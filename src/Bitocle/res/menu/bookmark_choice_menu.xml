@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/bookmark_choice_menu_remove_bookmark"
+          android:title="@string/bookmark_choice_menu_remove_bookmark"
+          android:icon="@drawable/ic_action_remove_bookmark"
+          android:showAsAction="always">
+    </item>
+
+</menu>

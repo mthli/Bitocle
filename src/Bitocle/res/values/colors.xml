@@ -1,0 +1,6 @@
+<resources>
+
+    <!-- SmoothProgressBar -->
+    <color name="default_progress_bar_color">#FF33B5E5</color>
+
+</resources>

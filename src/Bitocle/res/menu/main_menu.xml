@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/main_menu_add"
+          android:title="@string/main_menu_add"
+          android:showAsAction="always"
+          android:actionViewClass="android.widget.SearchView">
+    </item>
+
+    <item android:id="@+id/main_menu_bookmark"
+          android:title="@string/main_menu_bookmark"
+          android:icon="@drawable/ic_action_bookmark"
+          android:showAsAction="always">
+    </item>
+
+    <item android:id="@+id/main_menu_about"
+          android:title="@string/main_menu_about"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/main_menu_logout"
+          android:title="@string/main_menu_logout"
+          android:showAsAction="collapseActionView">
+    </item>
+
+</menu>

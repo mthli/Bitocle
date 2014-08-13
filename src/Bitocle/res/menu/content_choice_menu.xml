@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/content_choice_menu_add_bookmark"
+          android:title="@string/content_choice_menu_add_bookmark_text"
+          android:icon="@drawable/ic_action_add_bookmark"
+          android:showAsAction="always">
+    </item>
+
+</menu>

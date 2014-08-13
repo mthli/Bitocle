@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?android:attr/activatedBackgroundIndicator">
+
+    <TextView android:id="@+id/content_item_info"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_alignParentRight="true"
+              android:layout_centerVertical="true"
+              android:paddingTop="10dp"
+              android:paddingBottom="10dp"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp"
+              android:textSize="12sp"
+              android:textColor="@android:color/darker_gray"
+              android:singleLine="true"
+              android:ellipsize="end">
+    </TextView>
+
+    <LinearLayout android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_alignParentLeft="true"
+                  android:layout_toLeftOf="@+id/content_item_info">
+
+        <ImageView android:id="@+id/content_item_icon"
+                   android:contentDescription="@string/content_item_icon_cd"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center"
+                   android:paddingLeft="10dp">
+        </ImageView>
+
+        <TextView android:id="@+id/content_item_title"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:paddingTop="10dp"
+                  android:paddingBottom="10dp"
+                  android:paddingLeft="10dp"
+                  android:paddingRight="10dp"
+                  android:textSize="18sp"
+                  android:singleLine="true"
+                  android:ellipsize="end">
+        </TextView>
+
+    </LinearLayout>
+
+</RelativeLayout>

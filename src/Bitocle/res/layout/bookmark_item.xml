@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="?android:attr/activatedBackgroundIndicator">
+
+    <ImageView android:id="@+id/bookmark_item_icon"
+               android:contentDescription="@string/bookmark_item_icon_cd"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingTop="13dp"
+               android:paddingLeft="10dp">
+    </ImageView>
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:paddingTop="10dp"
+                  android:paddingBottom="10dp"
+                  android:paddingLeft="10dp"
+                  android:paddingRight="10dp">
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/bookmark_item_date"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true"
+                      android:textSize="12sp"
+                      android:textColor="@android:color/darker_gray"
+                      android:singleLine="true"
+                      android:ellipsize="end">
+            </TextView>
+
+            <TextView android:id="@+id/bookmark_item_title"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_toLeftOf="@id/bookmark_item_date"
+                      android:paddingRight="10dp"
+                      android:textSize="18sp"
+                      android:singleLine="true"
+                      android:ellipsize="end">
+            </TextView>
+
+        </RelativeLayout>
+
+
+        <RelativeLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+            <TextView android:id="@+id/bookmark_item_owner"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentRight="true"
+                      android:textSize="12sp"
+                      android:textColor="@android:color/darker_gray"
+                      android:singleLine="true"
+                      android:ellipsize="end">
+
+            </TextView>
+
+            <TextView android:id="@+id/bookmark_item_content"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_alignParentLeft="true"
+                      android:layout_toLeftOf="@id/bookmark_item_owner"
+                      android:paddingRight="10dp"
+                      android:textSize="12sp"
+                      android:singleLine="true"
+                      android:ellipsize="end">
+            </TextView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

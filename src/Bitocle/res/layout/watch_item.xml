@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:descendantFocusability="blocksDescendants">
+
+    <ImageButton android:id="@+id/watch_item_add"
+                 android:contentDescription="@string/watch_item_add_cd"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:layout_alignParentRight="true"
+                 android:layout_centerVertical="true"
+                 android:paddingRight="5dp"
+                 android:paddingTop="20dp"
+                 android:paddingBottom="20dp"
+                 android:src="@drawable/watch_item_add"
+                 android:background="@android:color/transparent">
+    </ImageButton>
+
+    <LinearLayout android:id="@+id/watch_linear_layout"
+                  android:orientation="horizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_alignParentLeft="true"
+                  android:layout_toLeftOf="@id/watch_item_add">
+
+        <ImageView android:id="@+id/watch_item_icon"
+                   android:contentDescription="@string/watch_item_icon_cd"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:paddingTop="13dp"
+                   android:paddingLeft="10dp">
+        </ImageView>
+
+        <LinearLayout android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:paddingTop="10dp"
+                      android:paddingBottom="10dp"
+                      android:paddingLeft="10dp"
+                      android:paddingRight="5dp">
+
+            <RelativeLayout android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                <TextView android:id="@+id/watch_item_date"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentRight="true"
+                          android:textSize="12sp"
+                          android:textColor="@android:color/darker_gray"
+                          android:singleLine="true"
+                          android:ellipsize="end">
+                </TextView>
+
+                <TextView android:id="@+id/watch_item_title"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_alignParentLeft="true"
+                          android:layout_toLeftOf="@id/watch_item_date"
+                          android:paddingRight="10dp"
+                          android:textSize="18sp"
+                          android:layout_gravity="left"
+                          android:singleLine="true"
+                          android:ellipsize="end">
+                </TextView>
+
+            </RelativeLayout>
+
+            <TextView android:id="@+id/watch_item_content"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="12sp"
+                      android:singleLine="true"
+                      android:ellipsize="end">
+            </TextView>
+
+            <TextView android:id="@+id/watch_item_info"
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:textSize="12sp"
+                      android:textColor="@android:color/darker_gray"
+                      android:singleLine="true"
+                      android:ellipsize="end">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

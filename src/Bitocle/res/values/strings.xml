@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">Bitocle</string>
+    <string name="app_url">http://mthli.github.io</string>
+
+    <!-- Login -->
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_philosophy">Do one thing and do it well</string>
+    <string name="login_sp">OAuthFile</string>
+    <string name="login_sp_oauth">OAuth</string>
+    <string name="login_sp_username">Username</string>
+    <string name="login_intent">FirstLogin</string>
+    <string name="login_message_miss_password">Miss Password</string>
+    <string name="login_message_miss_username">Miss Username</string>
+    <string name="login_message_miss_username_and_password">Miss Username and Password</string>
+    <string name="login_message_authoring">Authoring</string>
+    <string name="login_thread">LoginThread</string>
+    <string name="login_permission_notifications">notifications</string>
+    <string name="login_permission_repo">repo</string>
+    <string name="login_permission_user">user</string>
+    <string name="login_message_auth_failed">Auth failed</string>
+    <string name="login_menu_about">About</string>
+    <string name="login_about_label">About</string>
+    <string name="login_about_readme">README.html</string>
+    <string name="login_about_uri">https://github.com/mthli/Bitocle</string>
+    <string name="login_about_star">Star It</string>
+    <string name="login_about_close">Close</string>
+
+    <!-- Main -->
+    <string name="main_menu_add">Add</string>
+    <string name="main_menu_add_hint">e.g. torvalds/linux</string>
+    <string name="main_menu_bookmark">Bookmark</string>
+    <string name="main_menu_about">About</string>
+    <string name="main_menu_logout">Logout</string>
+    <string name="main_logout_failed">Logout Failed</string>
+    <string name="main_about_label">About</string>
+    <string name="main_about_readme">README.html</string>
+    <string name="main_about_uri">https://github.com/mthli/Bitocle</string>
+    <string name="main_about_star">Star It</string>
+    <string name="main_about_close">Close</string>
+    <string name="main_about_star_thx">
+        Thank you for your star :)
+    </string>
+    <string name="main_about_author">mthli</string>
+    <string name="main_about_repo">Bitocle</string>
+    <!-- Repo -->
+    <string name="repo_item_overflow_cd">Overflow</string>
+    <string name="repo_item_icon_cd">Icon</string>
+    <string name="repo_item_overflow_commit">Commit</string>
+    <string name="repo_item_overflow_remove">Remove</string>
+    <string name="repo_item_info_star">Star</string>
+    <string name="repo_item_info_fork">Fork</string>
+    <string name="repo_task_successful">Refresh Successful</string>
+    <string name="repo_task_failed">Refresh Failed</string>
+    <string name="repo_empty_list">
+        Use floating button to add\nsome repositories
+    </string>
+    <string name="repo_empty_get_data_failed">
+        Get data failed
+    </string>
+    <string name="repo_remove_failed">Remove Failed</string>
+    <string name="repo_path_root">/</string>
+    <string name="repo_add_successful">Add Successful</string>
+    <string name="repo_add_failed">Add Failed</string>
+    <string name="repo_lang_unknown">Unknown</string>
+    <!-- Content -->
+    <string name="content_item_icon_cd">Icon</string>
+    <string name="content_empty_dir">Empty DIR.</string>
+    <string name="content_text_encode">UTF-8</string>
+    <string name="content_task_successful">Refresh Successful</string>
+    <string name="content_task_failed">Refresh Failed</string>
+    <string name="content_empty_get_data_failed">
+        Get data failed
+    </string>
+    <string name="content_choice_menu_add_bookmark_text">Add bookmark</string>
+    <string name="content_item_info_sharp">#</string>
+    <string name="content_item_info_kb">KB</string>
+    <string name="content_mimetype_unsupport">UnSupport MimeType</string>
+    <string name="content_intent_repoowner">RepoOwner</string>
+    <string name="content_intent_reponame">RepoName</string>
+    <string name="content_intent_filename">FileName</string>
+    <string name="content_intent_filepath">FilePath</string>
+    <string name="content_intent_sha">Sha</string>
+    <!-- Bookmark -->
+    <string name="bookmark_label">Bookmark</string>
+    <string name="bookmark_item_icon_cd">Icon</string>
+    <string name="bookmark_database_open_error">Database Open Error</string>
+    <string name="bookmark_add_successful">Add Successful</string>
+    <string name="bookmark_remove_successful">Remove Successful</string>
+    <string name="bookmark_remove_failed">Remove Failed</string>
+    <string name="bookmark_choice_menu_remove_bookmark">Remove bookmark</string>
+    <string name="bookmark_task_successful">Refresh Successful</string>
+    <string name="bookmark_task_failed">Refresh Failed</string>
+    <string name="bookmark_empty_bookmark_empty">
+        You haven\'t add any bookmark yet
+    </string>
+    <string name="bookmark_empty_get_data_failed">
+        Get data failed
+    </string>
+    <!-- Watch -->
+    <string name="watch_label">History</string>
+    <string name="watch_item_add_cd">Add</string>
+    <string name="watch_item_icon_cd">Icon</string>
+    <string name="watch_item_info_star">Star</string>
+    <string name="watch_item_info_fork">Fork</string>
+    <string name="watch_empty_list">
+        You have\'t star any repository
+    </string>
+    <string name="watch_empty_get_data_failed">
+        Get data failed
+    </string>
+    <string name="watch_word_pin">Pin</string>
+    <!-- Commit -->
+    <string name="commit_label">Commit</string>
+    <string name="commit_item_icon_cd">Icon</string>
+    <string name="commit_empty_list">
+        No commit yet
+    </string>
+    <string name="commit_empty_get_data_failed">
+        Get data failed
+    </string>
+
+    <!-- WebView -->
+    <string name="webview_label">WebView</string>
+    <string name="webview_menu_refresh">Refresh</string>
+    <string name="webview_encoding">UTF-8</string>
+    <string name="webview_empty_get_data_failed">
+        Get data failed
+    </string>
+
+    <!-- Other -->
+    <string name="pull_to_refresh_pull_label">Pull to refresh</string>
+    <string name="pull_to_refresh_release_label">Release to refresh</string>
+    <string name="pull_to_refresh_refreshing_label">Loading</string>
+
+</resources>
