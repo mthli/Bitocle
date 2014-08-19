@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">Bitocle</string>
+    <string name="app_url">http://mthli.github.io</string>
+
+    <!-- Login -->
+    <string name="login_menu_about">About</string>
+    <string name="login_sp">OAuthFile</string>
+    <string name="login_sp_oauth">OAuth</string>
+    <string name="login_sp_username">Username</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="login_philosophy">Do one thing and do it well.</string>
+    <string name="login_intent">Intent</string>
+    <string name="login_thread">LoginThread</string>
+    <string name="login_permission_notifications">notifications</string>
+    <string name="login_permission_repo">repo</string>
+    <string name="login_permission_user">user</string>
+    <string name="login_message_miss_both">Miss Username and Password</string>
+    <string name="login_message_miss_username">Miss Username</string>
+    <string name="login_message_miss_password">Miss Password</string>
+    <string name="login_message_authoring">Authoring</string>
+    <string name="login_message_auth_failed">Auth Failed</string>
+
+    <!-- Main -->
+    <string name="main_menu_star">Star</string>
+    <string name="main_menu_bookmark">Bookmark</string>
+    <string name="main_menu_refresh">Refresh</string>
+    <string name="main_menu_theme">Theme</string>
+    <string name="main_menu_about">About</string>
+    <string name="main_menu_logout">Logout</string>
+
+    <!-- Repo -->
+    <string name="repo_item_icon">Icon</string>
+    <string name="repo_item_overflow">Overflow</string>
+    <string name="repo_item_overflow_commit">Commit</string>
+    <string name="repo_item_overflow_remove">Remove</string>
+    <string name="repo_item_unknown">Unknown</string>
+    <string name="repo_item_star">Star</string>
+    <string name="repo_item_fork">Fork</string>
+    <string name="repo_empty_description">No description.</string>
+    <string name="repo_empty_list">Empty list.</string>
+    <string name="repo_empty_error">Get data failed.</string>
+    <string name="repo_add_successful">Add Successful</string>
+    <string name="repo_add_failed">Add Failed</string>
+
+    <!-- Bookmark -->
+    <string name="bookmark_label">Bookmark</string>
+    <string name="bookmark_item_icon">Icon</string>
+    <string name="bookmark_choice_remove">Remove</string>
+    <string name="bookmark_remove_successful">Remove Successful</string>
+    <string name="bookmark_empty_list">Empty list.</string>
+    <string name="bookmark_empty_error">Get data failed.</string>
+
+    <!-- Star -->
+    <string name="star_label">Star</string>
+    <string name="star_item_overflow_commit">Commit</string>
+    <string name="star_item_overflow_add">Add</string>
+
+    <!-- Content -->
+    <string name="content_item_icon">Icon</string>
+    <string name="content_choice_add">Add</string>
+    <string name="content_add_successful">Add Successful</string>
+    <string name="content_database_error">Open Database failed</string>
+    <string name="content_empty_list">Empty list.</string>
+    <string name="content_empty_error">Get data failed.</string>
+
+    <!-- Other -->
+    <string name="pull_to_refresh_pull_label">Pull to refresh</string>
+    <string name="pull_to_refresh_release_label">Release to refresh</string>
+    <string name="pull_to_refresh_refreshing_label">Loading</string>
+
+</resources>

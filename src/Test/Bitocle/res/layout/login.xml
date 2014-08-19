@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingLeft="10dp"
+              android:paddingRight="10dp">
+
+    <EditText android:id="@+id/login_username"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingTop="15dp"
+              android:textSize="20sp"
+              android:hint="@string/login_username"
+              android:inputType="text">
+    </EditText>
+
+    <EditText android:id="@+id/login_password"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingTop="10dp"
+              android:textSize="20sp"
+              android:hint="@string/login_password"
+              android:inputType="textPassword">
+    </EditText>
+
+    <Button android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/login_button"
+            android:textSize="20sp">
+    </Button>
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingTop="0dp"
+              android:gravity="center"
+              android:text="@string/login_philosophy">
+    </TextView>
+
+</LinearLayout>

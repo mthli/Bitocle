@@ -1,0 +1,880 @@
+package io.github.mthli.Bitocle.Main;
+
+import android.app.ActionBar;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.SQLException;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.SparseBooleanArray;
+import android.view.*;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.*;
+import com.devspark.progressfragment.ProgressFragment;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
+import io.github.mthli.Bitocle.Bookmark.BookmarkItem;
+import io.github.mthli.Bitocle.Bookmark.BookmarkItemAdapter;
+import io.github.mthli.Bitocle.Bookmark.BookmarkTask;
+import io.github.mthli.Bitocle.Content.ContentItem;
+import io.github.mthli.Bitocle.Content.ContentItemAdapter;
+import io.github.mthli.Bitocle.Content.RepoContentTask;
+import io.github.mthli.Bitocle.Content.StarContentTask;
+import io.github.mthli.Bitocle.Database.Bookmark.BAction;
+import io.github.mthli.Bitocle.Database.Bookmark.Bookmark;
+import io.github.mthli.Bitocle.R;
+import io.github.mthli.Bitocle.Repo.*;
+import io.github.mthli.Bitocle.Star.StarItem;
+import io.github.mthli.Bitocle.Star.StarItemAdapter;
+import io.github.mthli.Bitocle.Star.StarTask;
+import org.eclipse.egit.github.core.Repository;
+import org.eclipse.egit.github.core.Tree;
+import org.eclipse.egit.github.core.TreeEntry;
+import org.eclipse.egit.github.core.client.GitHubClient;
+import uk.co.senab.actionbarpulltorefresh.library.ActionBarPullToRefresh;
+import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
+
+import java.util.*;
+
+public class MainFragment extends ProgressFragment {
+    public static final int REPO_ID = 0;
+    public static final int STAR_ID = 1;
+    public static final int BOOKMARK_ID = 2;
+    public static final int REPO_CONTENT_ID = 3;
+    public static final int STAR_CONTENT_ID = 4;
+
+    private int currentId = 0;
+    private int flag = 0;
+
+    private ListView listView;
+    private ActionBar actionBar;
+    private PullToRefreshLayout pull;
+    private String title;
+    private String subTitle;
+
+    private MenuItem star;
+    private MenuItem bookmark;
+    private MenuItem about;
+    private MenuItem logout;
+    private AutoCompleteTextView search;
+    private View line;
+    private InputMethodManager imm;
+
+    private RepoItemAdapter repoItemAdapter;
+    private List<RepoItem> repoItemList = new ArrayList<RepoItem>();
+
+    private SimpleAdapter autoAdapter;
+    private List<Map<String, String>> autoList = new ArrayList<Map<String, String>>();
+
+    private BookmarkItemAdapter bookmarkItemAdapter;
+    private List<BookmarkItem> bookmarkItemList = new ArrayList<BookmarkItem>();
+
+    private StarItemAdapter starItemAdapter;
+    private List<StarItem> starItemList = new ArrayList<StarItem>();
+    private Iterator<Repository> starIterator;
+
+    private ContentItemAdapter contentItemAdapter;
+    private List<ContentItem> contentItemList = new ArrayList<ContentItem>();
+
+    private GitHubClient client;
+    private String owner;
+    private String name;
+
+    private Tree root;
+    private TreeEntry entry;
+    private List<Tree> roots = new ArrayList<Tree>();
+    private List<String> paths = new ArrayList<String>();
+    private boolean toggle = false;
+
+    private RepoTask repoTask;
+    private BookmarkTask bookmarkTask;
+    private StarTask starTask;
+    private AddTask addTask;
+    private RepoContentTask repoContentTask;
+    private StarContentTask starContentTask;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        setContentView(R.layout.main_fragment);
+        final View view = getContentView();
+        setContentShown(true);
+
+        listView = (ListView) view.findViewById(R.id.main_fragment_listview);
+
+        actionBar = getActivity().getActionBar();
+
+        ViewGroup group = (ViewGroup) view;
+        pull = new PullToRefreshLayout(group.getContext());
+        ActionBarPullToRefresh.from(getActivity())
+                .insertLayoutInto(group)
+                .setup(pull);
+
+        imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        search = ((MainActivity) getActivity()).getSearch();
+        line = ((MainActivity) getActivity()).getLine();
+
+        final Drawable searchIcon = getResources().getDrawable(R.drawable.ic_action_cancel);
+        search.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (searchIcon != null && event.getAction() == MotionEvent.ACTION_UP) {
+                    int eventX = (int) event.getRawX();
+                    int eventY = (int) event.getRawY();
+
+                    Rect rectR = new Rect();
+                    search.getGlobalVisibleRect(rectR);
+                    rectR.left = rectR.right - 100;
+                    if (rectR.contains(eventX, eventY)) {
+                        search.setText("");
+                    }
+                }
+                return false;
+            }
+        });
+
+        search.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND) {
+                    String query = search.getText().toString();
+                    if (query.length() > 0) {
+                        addTask = new AddTask(MainFragment.this, query);
+                        addTask.execute();
+                    }
+                }
+                return false;
+            }
+        });
+
+        search.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                clickWhenSearchItem(view);
+            }
+        });
+
+        autoAdapter = new SimpleAdapter(
+                view.getContext(),
+                autoList,
+                R.layout.auto_item,
+                new String[] {"owner", "name"},
+                new int[] {R.id.auto_item_owner, R.id.auto_item_name}
+        );
+        autoAdapter.notifyDataSetChanged();
+        search.setAdapter(autoAdapter);
+
+        repoItemAdapter = new RepoItemAdapter(
+                MainFragment.this,
+                view.getContext(),
+                R.layout.repo_item,
+                repoItemList
+        );
+        repoItemAdapter.notifyDataSetChanged();
+        listView.setAdapter(repoItemAdapter);
+
+        starItemAdapter = new StarItemAdapter(
+                MainFragment.this,
+                view.getContext(),
+                R.layout.repo_item,
+                starItemList
+        );
+        starItemAdapter.notifyDataSetChanged();
+
+        bookmarkItemAdapter = new BookmarkItemAdapter(
+                view.getContext(),
+                R.layout.bookmark_item,
+                bookmarkItemList
+        );
+        bookmarkItemAdapter.notifyDataSetChanged();
+
+        contentItemAdapter = new ContentItemAdapter(
+                view.getContext(),
+                R.layout.content_item,
+                contentItemList
+        );
+        contentItemAdapter.notifyDataSetChanged();
+
+        SharedPreferences sp = getActivity().getSharedPreferences(
+                getString(R.string.login_sp),
+                Context.MODE_PRIVATE
+        );
+        String OAuth = sp.getString(getString(R.string.login_sp_oauth), null);
+        client = new GitHubClient();
+        client.setOAuth2Token(OAuth);
+
+        Intent intent = getActivity().getIntent();
+        if (intent.getBooleanExtra(getString(R.string.login_intent), false)) {
+            flag = Flag.REPO_FIRST;
+            repoTask = new RepoTask(MainFragment.this);
+            repoTask.execute();
+        } else {
+            flag = Flag.REPO_SECOND;
+            repoTask = new RepoTask(MainFragment.this);
+            repoTask.execute();
+        }
+        currentId = REPO_ID;
+        toggle = false;
+
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
+        listView.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+            @Override
+            public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+                Integer integer = listView.getCheckedItemCount();
+                mode.setTitle(integer.toString());
+            }
+
+            @Override
+            public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+                MenuInflater inflater = getActivity().getMenuInflater();
+                switch (currentId) {
+                    case BOOKMARK_ID:
+                        inflater.inflate(R.menu.bookmark_choice_menu, menu);
+                        return true;
+                    case REPO_CONTENT_ID:
+                        inflater.inflate(R.menu.content_choice_menu, menu);
+                        return true;
+                    case STAR_CONTENT_ID:
+                        inflater.inflate(R.menu.content_choice_menu, menu);
+                        return true;
+                    default:
+                        break;
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+                /* Do nothing */
+                return false;
+            }
+
+            @Override
+            public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+                return clickWhenActionItem(item, view.getContext());
+            }
+
+            @Override
+            public void onDestroyActionMode(ActionMode mode) {
+                SparseBooleanArray array = listView.getCheckedItemPositions();
+                for (int i = 0; i < array.size(); i++) {
+                    if (array.valueAt(i)) {
+                        listView.setItemChecked(i, false);
+                    }
+                }
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (currentId) {
+                    case REPO_ID:
+                        clickWhenRepo(position);
+                        break;
+                    case STAR_ID:
+                        clickWhenStar(position);
+                        break;
+                    case BOOKMARK_ID:
+                        clickWhenBookmark(position);
+                        break;
+                    case REPO_CONTENT_ID:
+                        clickWhenRepoContent(position);
+                        break;
+                    case STAR_CONTENT_ID:
+                        clickWhenStarContent(position);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+    }
+
+    private void clickWhenSearchItem(View view) {
+        allTaskDown();
+
+        hideWhenContent();
+
+        TextView ownerText = (TextView) view.findViewById(R.id.auto_item_owner);
+        TextView nameText = (TextView) view.findViewById(R.id.auto_item_name);
+        owner = ownerText.getText().toString();
+        name = nameText.getText().toString();
+
+        title = name;
+        subTitle = name;
+        actionBar.setTitle(title);
+        actionBar.setSubtitle(subTitle);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        root = null;
+        entry = null;
+        roots.clear();
+        paths.clear();
+
+        paths.add("/"); //
+
+        listView.setAdapter(contentItemAdapter);
+        contentItemAdapter.notifyDataSetChanged();
+        flag = Flag.REPO_CONTENT_FIRST;
+        currentId = REPO_CONTENT_ID;
+        repoContentTask = new RepoContentTask(MainFragment.this);
+        repoContentTask.execute();
+    }
+
+    private boolean clickWhenActionItem(MenuItem item, Context context) {
+        BAction action = new BAction(context);
+        try {
+            action.openDatabase(true);
+        } catch (SQLException s) {
+            SuperToast.create(
+                    context,
+                    getString(R.string.content_database_error),
+                    SuperToast.Duration.SHORT,
+                    Style.getStyle(Style.RED)
+            ).show();
+            return false;
+        }
+
+        SparseBooleanArray array = listView.getCheckedItemPositions();
+        switch (item.getItemId()) {
+            case R.id.content_choice_add:
+                for (int i = 0; i < array.size(); i++) {
+                    if (array.valueAt(i)) {
+                        ContentItem c = contentItemAdapter.getItem(array.keyAt(i));
+                        TreeEntry e = c.getEntry();
+                        if (!action.checkBookmark(e.getSha())) {
+                            Bookmark b = new Bookmark();
+                            String[] arr = e.getPath().split("/");
+                            b.setTitle(arr[arr.length - 1]);
+                            b.setType(e.getType());
+                            b.setOwner(owner);
+                            b.setName(name);
+                            if (toggle) {
+                                String str = paths.get(paths.size() - 1);
+                                b.setPath(str + "/" + e.getPath());
+                            } else {
+                                b.setPath(e.getPath());
+                            }
+                            b.setSha(e.getSha());
+                            b.setKey(owner + "/" + name);
+                            action.addBookmark(b);
+                        }
+                        listView.setItemChecked(i, false);
+                    }
+                }
+                SuperToast.create(
+                        context,
+                        getString(R.string.content_add_successful),
+                        SuperToast.Duration.SHORT,
+                        Style.getStyle(Style.BLUE)
+                ).show();
+                break;
+            case R.id.bookmark_choice_remove:
+                for (int i = 0; i < array.size(); i++) {
+                    if (array.valueAt(i)) {
+                        BookmarkItem b = bookmarkItemAdapter.getItem(array.keyAt(i));
+                        action.unMarkBySha(b.getSha());
+                        listView.setItemChecked(i, false);
+                    }
+                }
+                SuperToast.create(
+                        context,
+                        getString(R.string.bookmark_remove_successful),
+                        SuperToast.Duration.SHORT,
+                        Style.getStyle(Style.BLUE)
+                ).show();
+                bookmarkTask = new BookmarkTask(MainFragment.this);
+                bookmarkTask.execute();
+                break;
+            default:
+                break;
+        }
+        action.closeDatabase();
+
+        return true;
+    }
+
+    private void clickWhenRepo(int position) {
+        allTaskDown();
+
+        hideWhenContent();
+
+        RepoItem item = repoItemList.get(position);
+
+        owner = item.getOwner();
+        name = item.getName();
+
+        title = name;
+        subTitle = name;
+        actionBar.setTitle(title);
+        actionBar.setSubtitle(subTitle);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        root = null;
+        entry = null;
+        roots.clear();
+        paths.clear();
+
+        paths.add("/"); //
+
+        listView.setAdapter(contentItemAdapter);
+        contentItemAdapter.notifyDataSetChanged();
+        flag = Flag.REPO_CONTENT_FIRST;
+        currentId = REPO_CONTENT_ID;
+        repoContentTask = new RepoContentTask(MainFragment.this);
+        repoContentTask.execute();
+    }
+
+    private void clickWhenStar(int position) {
+        allTaskDown();
+
+        StarItem item = starItemList.get(position);
+        owner = item.getOwner();
+        name = item.getName();
+
+        title = name;
+        subTitle = name;
+        actionBar.setTitle(title);
+        actionBar.setSubtitle(subTitle);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        root = null;
+        entry = null;
+        roots.clear();
+        paths.clear();
+
+        paths.add("/"); //
+
+        listView.setAdapter(contentItemAdapter);
+        contentItemAdapter.notifyDataSetChanged();
+        flag = Flag.STAR_CONTENT_FIRST;
+        currentId = STAR_CONTENT_ID;
+        starContentTask = new StarContentTask(MainFragment.this);
+        starContentTask.execute();
+    }
+
+    private BookmarkItem bookmarkItem;
+
+    private void clickWhenBookmark(int position) {
+        allTaskDown();
+
+        bookmarkItem = bookmarkItemList.get(position);
+
+        owner = bookmarkItem.getOwner();
+        name = bookmarkItem.getName();
+
+        if (bookmarkItem.getType().equals("tree")) {
+            hideWhenContent();
+
+            title = bookmarkItem.getTitle();
+            subTitle = name + "/" + bookmarkItem.getPath();
+            actionBar.setTitle(title);
+            actionBar.setSubtitle(subTitle);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            listView.setAdapter(contentItemAdapter);
+            contentItemAdapter.notifyDataSetChanged();
+
+            paths.add(bookmarkItem.getPath()); //
+
+            switch (flag) {
+                case Flag.REPO_FIRST:
+                case Flag.REPO_SECOND:
+                case Flag.REPO_REFRESH:
+                case Flag.REPO_CONTENT_FIRST:
+                case Flag.REPO_CONTENT_SECOND:
+                case Flag.REPO_CONTENT_REFRESH:
+                    flag = Flag.REPO_CONTENT_FIRST;
+                    currentId = REPO_CONTENT_ID;
+                    repoContentTask = new RepoContentTask(MainFragment.this);
+                    repoContentTask.execute();
+                    break;
+                case Flag.STAR_FIRST:
+                case Flag.STAR_SECOND:
+                case Flag.STAR_REFRESH:
+                case Flag.STAR_CONTENT_FIRST:
+                case Flag.STAR_CONTENT_SECOND:
+                case Flag.STAR_CONTENT_REFRESH:
+                    flag = Flag.STAR_CONTENT_FIRST;
+                    currentId = STAR_CONTENT_ID;
+                    starContentTask = new StarContentTask(MainFragment.this);
+                    starContentTask.execute();
+                    break;
+                default:
+                    break;
+            }
+        } else {
+
+        }
+    }
+
+    public BookmarkItem getBookmarkItem() {
+        return bookmarkItem;
+    }
+
+    private void clickWhenRepoContent(int position) {
+        allTaskDown();
+
+        ContentItem item = contentItemList.get(position);
+
+        if (item.getEntry().getType().equals("tree")) {
+            entry = item.getEntry();
+
+            String[] arr = entry.getPath().split("/");
+            title = arr[arr.length - 1];
+            if (toggle) {
+                String str = paths.get(paths.size() - 1);
+                subTitle = name
+                        + "/"
+                        + str
+                        + "/"
+                        + entry.getPath();
+            } else {
+                subTitle = name + "/" + entry.getPath();
+            }
+            actionBar.setTitle(title);
+            actionBar.setSubtitle(subTitle);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            flag = Flag.REPO_CONTENT_SECOND;
+            currentId = REPO_CONTENT_ID;
+            repoContentTask = new RepoContentTask(MainFragment.this);
+            repoContentTask.execute();
+        } else {
+            /* Do something */
+        }
+    }
+
+    private void clickWhenStarContent(int position) {
+        allTaskDown();
+
+        ContentItem item = contentItemList.get(position);
+
+        if (item.getEntry().getType().equals("tree")) {
+            entry = item.getEntry();
+
+            String[] arr = entry.getPath().split("/");
+            title = arr[arr.length - 1];
+            if (toggle) {
+                String str = paths.get(paths.size() - 1);
+                subTitle = name
+                        + "/"
+                        + str
+                        + "/"
+                        + entry.getPath();
+            } else {
+                subTitle = name + "/" + entry.getPath();
+            }
+            actionBar.setTitle(title);
+            actionBar.setSubtitle(subTitle);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            flag = Flag.STAR_CONTENT_SECOND;
+            currentId = STAR_CONTENT_ID;
+            starContentTask = new StarContentTask(MainFragment.this);
+            starContentTask.execute();
+        } else {
+            /* Do something */
+        }
+    }
+
+    public void hideWhenStar() {
+        imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+        search.setText("");
+        search.clearFocus();
+        search.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
+        star.setVisible(false);
+        bookmark.setVisible(true);
+        about.setVisible(false);
+        logout.setVisible(false);
+    }
+
+    public void hideWhenContent() {
+        imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+        search.setText("");
+        search.clearFocus();
+        search.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
+        star.setVisible(false);
+        bookmark.setVisible(true);
+        about.setVisible(false);
+        logout.setVisible(false);
+    }
+
+    public void hideWhenBookmark() {
+        imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+        search.setText("");
+        search.clearFocus();
+        search.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
+        star.setVisible(false);
+        bookmark.setVisible(false);
+        about.setVisible(false);
+        logout.setVisible(false);
+    }
+
+    public void showWhenRepo() {
+        search.setVisibility(View.VISIBLE);
+        line.setVisibility(View.VISIBLE);
+        listView.setHeaderDividersEnabled(true);
+        star.setVisible(true);
+        bookmark.setVisible(true);
+        about.setVisible(true);
+        logout.setVisible(true);
+    }
+
+    public void changeToRepo() {
+        allTaskDown();
+
+        showWhenRepo();
+        setContentEmpty(false);
+        setContentShown(true);
+
+        actionBar.setTitle(R.string.app_name);
+        actionBar.setSubtitle(null);
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setHomeButtonEnabled(false);
+
+        entry = null;
+        root = null;
+        roots.clear();
+        paths.clear();
+        toggle = false;
+
+        listView.setAdapter(repoItemAdapter);
+        repoItemAdapter.notifyDataSetChanged();
+        flag = Flag.REPO_SECOND;
+        currentId = REPO_ID;
+        repoTask = new RepoTask(MainFragment.this);
+        repoTask.execute();
+    }
+
+    public void changeToBookmark() {
+        allTaskDown();
+
+        hideWhenBookmark();
+        setContentEmpty(false);
+        setContentShown(true);
+
+        actionBar.setTitle(R.string.bookmark_label);
+        actionBar.setSubtitle(null);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        toggle = true;
+
+        listView.setAdapter(bookmarkItemAdapter);
+        bookmarkItemAdapter.notifyDataSetChanged();
+        currentId = MainFragment.BOOKMARK_ID;
+        bookmarkTask = new BookmarkTask(MainFragment.this);
+        bookmarkTask.execute();
+    }
+
+    public void changeToStar(boolean first) {
+        allTaskDown();
+
+        hideWhenStar();
+        setContentEmpty(false);
+        setContentShown(true);
+
+        entry = null;
+        root = null;
+        roots.clear();
+        paths.clear();
+        toggle = false;
+
+        actionBar.setTitle(R.string.star_label);
+        actionBar.setSubtitle(null);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        listView.setAdapter(starItemAdapter);
+        starItemAdapter.notifyDataSetChanged();
+        currentId = MainFragment.STAR_ID;
+        if (first) {
+            flag = Flag.STAR_FIRST;
+            starTask = new StarTask(MainFragment.this);
+            starTask.execute();
+        } else {
+            flag = Flag.STAR_SECOND;
+        }
+    }
+
+    public void backFromBookmark() {
+        allTaskDown();
+
+        switch (flag) {
+            case Flag.REPO_FIRST:
+            case Flag.REPO_SECOND:
+            case Flag.REPO_REFRESH:
+                changeToRepo();
+                break;
+            case Flag.REPO_CONTENT_FIRST:
+            case Flag.REPO_CONTENT_SECOND:
+            case Flag.REPO_CONTENT_REFRESH:
+                setContentEmpty(false);
+                setContentShown(true);
+
+                bookmark.setVisible(true);
+                actionBar.setTitle(title);
+                actionBar.setSubtitle(subTitle);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+                currentId = REPO_CONTENT_ID;
+                listView.setAdapter(contentItemAdapter);
+                contentItemAdapter.notifyDataSetChanged();
+                break;
+            case Flag.STAR_FIRST:
+            case Flag.STAR_SECOND:
+            case Flag.STAR_REFRESH:
+                changeToStar(false);
+                break;
+            case Flag.STAR_CONTENT_FIRST:
+            case Flag.STAR_CONTENT_SECOND:
+            case Flag.STAR_CONTENT_REFRESH:
+                setContentEmpty(false);
+                setContentShown(true);
+
+                bookmark.setVisible(true);
+                actionBar.setTitle(title);
+                actionBar.setSubtitle(subTitle);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+                currentId = STAR_CONTENT_ID;
+                listView.setAdapter(contentItemAdapter);
+                contentItemAdapter.notifyDataSetChanged();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /* Do something */
+    public void backToPrevious() {
+        allTaskDown();
+    }
+
+    public void allTaskDown() {
+        if (repoTask != null && repoTask.getStatus() == AsyncTask.Status.RUNNING) {
+            repoTask.cancel(true);
+        }
+        if (bookmarkTask != null && bookmarkTask.getStatus() == AsyncTask.Status.RUNNING) {
+            bookmarkTask.cancel(true);
+        }
+        if (starTask != null && starTask.getStatus() == AsyncTask.Status.RUNNING) {
+            starTask.cancel(true);
+        }
+        if (addTask != null && addTask.getStatus() == AsyncTask.Status.RUNNING) {
+            addTask.cancel(true);
+        }
+        if (repoContentTask != null && repoContentTask.getStatus() == AsyncTask.Status.RUNNING) {
+            repoContentTask.cancel(true);
+        }
+        if (starContentTask != null && starContentTask.getStatus() == AsyncTask.Status.RUNNING) {
+            starContentTask.cancel(true);
+        }
+        /* Do something */
+    }
+
+    public int getCurrentId() {
+        return currentId;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public ListView getListView() {
+        return listView;
+    }
+
+    public PullToRefreshLayout getPull() {
+        return pull;
+    }
+
+    public void setStar(MenuItem star) {
+        this.star = star;
+    }
+
+    public void setBookmark(MenuItem bookmark) {
+        this.bookmark = bookmark;
+    }
+
+    public void setAbout(MenuItem about) {
+        this.about = about;
+    }
+
+    public void setLogout(MenuItem logout) {
+        this.logout = logout;
+    }
+
+    public RepoItemAdapter getRepoItemAdapter() {
+        return repoItemAdapter;
+    }
+    public List<RepoItem> getRepoItemList() {
+        return repoItemList;
+    }
+
+    public SimpleAdapter getAutoAdapter() {
+        return autoAdapter;
+    }
+    public List<Map<String, String>> getAutoList() {
+        return autoList;
+    }
+
+    public StarItemAdapter getStarItemAdapter() {
+        return starItemAdapter;
+    }
+    public List<StarItem> getStarItemList() {
+        return starItemList;
+    }
+
+    public BookmarkItemAdapter getBookmarkItemAdapter() {
+        return bookmarkItemAdapter;
+    }
+    public List<BookmarkItem> getBookmarkItemList() {
+        return bookmarkItemList;
+    }
+
+    public ContentItemAdapter getContentItemAdapter() {
+        return contentItemAdapter;
+    }
+    public List<ContentItem> getContentItemList() {
+        return contentItemList;
+    }
+
+    public GitHubClient getClient() {
+        return client;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Tree getRoot() {
+        return root;
+    }
+    public void setRoot(Tree root) {
+        this.root = root;
+    }
+
+    public TreeEntry getEntry() {
+        return entry;
+    }
+
+    public List<Tree> getRoots() {
+        return roots;
+    }
+
+    public boolean isToggle() {
+        return toggle;
+    }
+}
