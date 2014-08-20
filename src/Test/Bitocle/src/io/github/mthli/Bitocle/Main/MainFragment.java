@@ -31,7 +31,6 @@ import io.github.mthli.Bitocle.Repo.*;
 import io.github.mthli.Bitocle.Star.StarItem;
 import io.github.mthli.Bitocle.Star.StarItemAdapter;
 import io.github.mthli.Bitocle.Star.StarTask;
-import org.eclipse.egit.github.core.Repository;
 import org.eclipse.egit.github.core.Tree;
 import org.eclipse.egit.github.core.TreeEntry;
 import org.eclipse.egit.github.core.client.GitHubClient;
@@ -75,7 +74,6 @@ public class MainFragment extends ProgressFragment {
 
     private StarItemAdapter starItemAdapter;
     private List<StarItem> starItemList = new ArrayList<StarItem>();
-    private Iterator<Repository> starIterator;
 
     private ContentItemAdapter contentItemAdapter;
     private List<ContentItem> contentItemList = new ArrayList<ContentItem>();
@@ -87,7 +85,7 @@ public class MainFragment extends ProgressFragment {
     private Tree root;
     private TreeEntry entry;
     private List<Tree> roots = new ArrayList<Tree>();
-    private List<String> paths = new ArrayList<String>();
+    private List<Map<String, String>> buffer = new ArrayList<Map<String, String>>();
     private boolean toggle = false;
 
     private RepoTask repoTask;
@@ -96,6 +94,104 @@ public class MainFragment extends ProgressFragment {
     private AddTask addTask;
     private RepoContentTask repoContentTask;
     private StarContentTask starContentTask;
+
+    public int getCurrentId() {
+        return currentId;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public ListView getListView() {
+        return listView;
+    }
+
+    public PullToRefreshLayout getPull() {
+        return pull;
+    }
+
+    public void setStar(MenuItem star) {
+        this.star = star;
+    }
+
+    public void setBookmark(MenuItem bookmark) {
+        this.bookmark = bookmark;
+    }
+
+    public void setAbout(MenuItem about) {
+        this.about = about;
+    }
+
+    public void setLogout(MenuItem logout) {
+        this.logout = logout;
+    }
+
+    public RepoItemAdapter getRepoItemAdapter() {
+        return repoItemAdapter;
+    }
+    public List<RepoItem> getRepoItemList() {
+        return repoItemList;
+    }
+
+    public SimpleAdapter getAutoAdapter() {
+        return autoAdapter;
+    }
+    public List<Map<String, String>> getAutoList() {
+        return autoList;
+    }
+
+    public StarItemAdapter getStarItemAdapter() {
+        return starItemAdapter;
+    }
+    public List<StarItem> getStarItemList() {
+        return starItemList;
+    }
+
+    public BookmarkItemAdapter getBookmarkItemAdapter() {
+        return bookmarkItemAdapter;
+    }
+    public List<BookmarkItem> getBookmarkItemList() {
+        return bookmarkItemList;
+    }
+
+    public ContentItemAdapter getContentItemAdapter() {
+        return contentItemAdapter;
+    }
+    public List<ContentItem> getContentItemList() {
+        return contentItemList;
+    }
+
+    public GitHubClient getClient() {
+        return client;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Tree getRoot() {
+        return root;
+    }
+    public void setRoot(Tree root) {
+        this.root = root;
+    }
+
+    public TreeEntry getEntry() {
+        return entry;
+    }
+
+    public List<Tree> getRoots() {
+        return roots;
+    }
+
+    public boolean isToggle() {
+        return toggle;
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -314,9 +410,14 @@ public class MainFragment extends ProgressFragment {
         root = null;
         entry = null;
         roots.clear();
-        paths.clear();
+        buffer.clear();
 
-        paths.add("/"); //
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("prefix", "/");
+        map.put("suffix", "/");
+        map.put("owner", owner);
+        map.put("name", name);
+        buffer.add(map);
 
         listView.setAdapter(contentItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
@@ -354,12 +455,15 @@ public class MainFragment extends ProgressFragment {
                             b.setType(e.getType());
                             b.setOwner(owner);
                             b.setName(name);
+
+                            Map<String, String> map = buffer.get(buffer.size() - 1);
                             if (toggle) {
-                                String str = paths.get(paths.size() - 1);
+                                String str = map.get("prefix"); ///
                                 b.setPath(str + "/" + e.getPath());
                             } else {
                                 b.setPath(e.getPath());
                             }
+
                             b.setSha(e.getSha());
                             b.setKey(owner + "/" + name);
                             action.addBookmark(b);
@@ -418,9 +522,14 @@ public class MainFragment extends ProgressFragment {
         root = null;
         entry = null;
         roots.clear();
-        paths.clear();
+        buffer.clear();
 
-        paths.add("/"); //
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("prefix", "/");
+        map.put("suffix", "/");
+        map.put("owner", owner);
+        map.put("name", name);
+        buffer.add(map);
 
         listView.setAdapter(contentItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
@@ -446,9 +555,14 @@ public class MainFragment extends ProgressFragment {
         root = null;
         entry = null;
         roots.clear();
-        paths.clear();
+        buffer.clear();
 
-        paths.add("/"); //
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("prefix", "/");
+        map.put("suffix", "/");
+        map.put("owner", owner);
+        map.put("name", name);
+        buffer.add(map);
 
         listView.setAdapter(contentItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
@@ -480,7 +594,13 @@ public class MainFragment extends ProgressFragment {
             listView.setAdapter(contentItemAdapter);
             contentItemAdapter.notifyDataSetChanged();
 
-            paths.add(bookmarkItem.getPath()); //
+            Map<String, String> map = new HashMap<String, String>();
+            map.put("prefix", bookmarkItem.getPath());
+            map.put("suffix", "/");
+            map.put("owner", owner);
+            map.put("name", name);
+            buffer.add(map);
+            entry = null;
 
             switch (flag) {
                 case Flag.REPO_FIRST:
@@ -521,19 +641,27 @@ public class MainFragment extends ProgressFragment {
         allTaskDown();
 
         ContentItem item = contentItemList.get(position);
+        Map<String, String> map = buffer.get(buffer.size() - 1);
 
         if (item.getEntry().getType().equals("tree")) {
             entry = item.getEntry();
+            map.put("suffix", entry.getPath());
 
             String[] arr = entry.getPath().split("/");
             title = arr[arr.length - 1];
             if (toggle) {
-                String str = paths.get(paths.size() - 1);
-                subTitle = name
-                        + "/"
-                        + str
-                        + "/"
-                        + entry.getPath();
+                String str = map.get("prefix");
+                if (str.equals("/")) {
+                    subTitle = name
+                            + "/"
+                            + entry.getPath();
+                } else {
+                    subTitle = name
+                            + "/"
+                            + str
+                            + "/"
+                            + entry.getPath();
+                }
             } else {
                 subTitle = name + "/" + entry.getPath();
             }
@@ -554,19 +682,27 @@ public class MainFragment extends ProgressFragment {
         allTaskDown();
 
         ContentItem item = contentItemList.get(position);
+        Map<String, String> map = buffer.get(buffer.size() - 1);
 
         if (item.getEntry().getType().equals("tree")) {
             entry = item.getEntry();
+            map.put("suffix", entry.getPath());
 
             String[] arr = entry.getPath().split("/");
             title = arr[arr.length - 1];
             if (toggle) {
-                String str = paths.get(paths.size() - 1);
-                subTitle = name
-                        + "/"
-                        + str
-                        + "/"
-                        + entry.getPath();
+                String str = map.get("prefix");
+                if (str.equals("/")) {
+                    subTitle = name
+                            + "/"
+                            + entry.getPath();
+                } else {
+                    subTitle = name
+                            + "/"
+                            + str
+                            + "/"
+                            + entry.getPath();
+                }
             } else {
                 subTitle = name + "/" + entry.getPath();
             }
@@ -644,7 +780,7 @@ public class MainFragment extends ProgressFragment {
         entry = null;
         root = null;
         roots.clear();
-        paths.clear();
+        buffer.clear();
         toggle = false;
 
         listView.setAdapter(repoItemAdapter);
@@ -685,7 +821,7 @@ public class MainFragment extends ProgressFragment {
         entry = null;
         root = null;
         roots.clear();
-        paths.clear();
+        buffer.clear();
         toggle = false;
 
         actionBar.setTitle(R.string.star_label);
@@ -753,11 +889,160 @@ public class MainFragment extends ProgressFragment {
         }
     }
 
-    /* Do something */
     public void backToPrevious() {
         allTaskDown();
+
+        String entryPath;
+        try {
+            entryPath = entry.getPath();
+        } catch (NullPointerException n) {
+            nullOrLow();
+            return;
+        }
+
+        String[] entryArr = entryPath.split("/");
+        if (entryArr.length <= 0) {
+            nullOrLow();
+        } else {
+            Map<String, String> map = buffer.get(buffer.size() - 1);
+            String prefix = map.get("prefix");
+            owner = map.get("owner"); //
+            name = map.get("name"); //
+
+            contentItemList.clear();
+            if (entryArr.length == 1) {
+                if (prefix.equals("/")) {
+                    title = name;
+                    subTitle = name;
+                } else {
+                    title = prefix.split("/")[prefix.split("/").length - 1];
+                    subTitle = name + "/" + prefix;
+                }
+                actionBar.setTitle(title);
+                actionBar.setSubtitle(subTitle);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+                for (TreeEntry e: root.getTree()) {
+                    String temp = e.getPath();
+                    if (temp.split("/").length == 1) {
+                        contentItemList.add(new ContentItem(e));
+                    }
+                }
+                entry = null;
+            } else {
+                String str = entryArr[0];
+                for (int i = 1; i < entryArr.length - 1; i++) {
+                    str = str + "/" + entryArr[i];
+                }
+                title = str.split("/")[str.split("/").length - 1];
+                if (prefix.equals("/")) {
+                    subTitle = name + "/" + str;
+                } else {
+                    subTitle = name + "/" + prefix + "/" + str;
+                }
+                actionBar.setTitle(title);
+                actionBar.setSubtitle(subTitle);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+                for (TreeEntry e : root.getTree()) {
+                    String temp = e.getPath();
+                    if (
+                            (temp.split("/").length - 1 == str.split("/").length)
+                            && temp.startsWith(str)
+                    ) {
+                        contentItemList.add(new ContentItem(e));
+                    }
+                    if (e.getPath().equals(str)) {
+                        entry = e;
+                    }
+                }
+            }
+            Collections.sort(contentItemList);
+            contentItemAdapter.notifyDataSetChanged();
+        }
     }
 
+    private void nullOrLow() {
+        if (buffer.size() <= 1) {
+            switch (flag) {
+                case Flag.REPO_CONTENT_FIRST:
+                case Flag.REPO_CONTENT_SECOND:
+                case Flag.REPO_CONTENT_REFRESH:
+                    changeToRepo();
+                    break;
+                case Flag.STAR_CONTENT_FIRST:
+                case Flag.STAR_CONTENT_SECOND:
+                case Flag.STAR_CONTENT_REFRESH:
+                    changeToStar(false);
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            roots.remove(roots.size() - 1);
+            buffer.remove(buffer.size() - 1);
+            root = roots.get(roots.size() - 1);
+            Map<String, String> map = buffer.get(buffer.size() - 1);
+
+            String prefix = map.get("prefix");
+            String path = map.get("suffix");
+            owner = map.get("owner");
+            name = map.get("name");
+
+            setContentEmpty(false);
+            setContentShown(true);
+            contentItemList.clear();
+
+            if (path.equals("/")) {
+                if (prefix.equals("/")) {
+                    title = name;
+                    subTitle = name;
+                } else {
+                    title = prefix.split("/")[prefix.split("/").length - 1];
+                    subTitle = name + "/" + prefix;
+                }
+                actionBar.setTitle(title);
+                actionBar.setSubtitle(subTitle);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+                for (TreeEntry e: root.getTree()) {
+                    String temp = e.getPath();
+                    if (temp.split("/").length == 1) {
+                        contentItemList.add(new ContentItem(e));
+                    }
+                }
+                entry = null;
+            } else {
+                String[] arr = path.split("/");
+                title = arr[arr.length - 1];
+                if (prefix.equals("/")) {
+                    subTitle = name + "/" + path;
+                } else {
+                    subTitle = name + "/" + prefix + "/" + path;
+                }
+                actionBar.setTitle(title);
+                actionBar.setSubtitle(subTitle);
+                actionBar.setDisplayHomeAsUpEnabled(true);
+
+                for (TreeEntry e : root.getTree()) {
+                    String temp = e.getPath();
+                    if (
+                            (temp.split("/").length - 1 == arr.length)
+                            && temp.startsWith(path)
+                    ) {
+                        contentItemList.add(new ContentItem(e));
+                    }
+                    if (temp.equals(path)) {
+                        entry = e;
+                    }
+                }
+            }
+            Collections.sort(contentItemList);
+            contentItemAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /* Do something */
     public void allTaskDown() {
         if (repoTask != null && repoTask.getStatus() == AsyncTask.Status.RUNNING) {
             repoTask.cancel(true);
@@ -778,103 +1063,5 @@ public class MainFragment extends ProgressFragment {
             starContentTask.cancel(true);
         }
         /* Do something */
-    }
-
-    public int getCurrentId() {
-        return currentId;
-    }
-
-    public int getFlag() {
-        return flag;
-    }
-
-    public ListView getListView() {
-        return listView;
-    }
-
-    public PullToRefreshLayout getPull() {
-        return pull;
-    }
-
-    public void setStar(MenuItem star) {
-        this.star = star;
-    }
-
-    public void setBookmark(MenuItem bookmark) {
-        this.bookmark = bookmark;
-    }
-
-    public void setAbout(MenuItem about) {
-        this.about = about;
-    }
-
-    public void setLogout(MenuItem logout) {
-        this.logout = logout;
-    }
-
-    public RepoItemAdapter getRepoItemAdapter() {
-        return repoItemAdapter;
-    }
-    public List<RepoItem> getRepoItemList() {
-        return repoItemList;
-    }
-
-    public SimpleAdapter getAutoAdapter() {
-        return autoAdapter;
-    }
-    public List<Map<String, String>> getAutoList() {
-        return autoList;
-    }
-
-    public StarItemAdapter getStarItemAdapter() {
-        return starItemAdapter;
-    }
-    public List<StarItem> getStarItemList() {
-        return starItemList;
-    }
-
-    public BookmarkItemAdapter getBookmarkItemAdapter() {
-        return bookmarkItemAdapter;
-    }
-    public List<BookmarkItem> getBookmarkItemList() {
-        return bookmarkItemList;
-    }
-
-    public ContentItemAdapter getContentItemAdapter() {
-        return contentItemAdapter;
-    }
-    public List<ContentItem> getContentItemList() {
-        return contentItemList;
-    }
-
-    public GitHubClient getClient() {
-        return client;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Tree getRoot() {
-        return root;
-    }
-    public void setRoot(Tree root) {
-        this.root = root;
-    }
-
-    public TreeEntry getEntry() {
-        return entry;
-    }
-
-    public List<Tree> getRoots() {
-        return roots;
-    }
-
-    public boolean isToggle() {
-        return toggle;
     }
 }

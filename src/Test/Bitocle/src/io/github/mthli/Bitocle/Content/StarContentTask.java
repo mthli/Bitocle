@@ -134,7 +134,7 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
                 String[] a = entry.getPath().split("/");
                 for (TreeEntry e : entries) {
                     String[] r = e.getPath().split("/");
-                    if (((r.length - 1) == a.length) && e.getPath().startsWith(entry.getPath())) {
+                    if ((r.length - 1 == a.length) && e.getPath().startsWith(entry.getPath())) {
                         list.add(new ContentItem(e));
                     }
                 }

@@ -93,8 +93,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <ui_properties converted="true" />
     <breakpoint_rules converted="true" />
+    <ui_properties converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -105,17 +105,40 @@
       <file leaf-file-name="MainFragment.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46600333" vertical-offset="1219" max-vertical-offset="2355">
-              <caret line="757" column="22" selection-start-line="757" selection-start-column="22" selection-end-line="757" selection-end-column="22" />
+            <state vertical-scroll-proportion="-1.3383085" vertical-offset="2292" max-vertical-offset="2895">
+              <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#3392#3400#0" expanded="true" />
+                <element signature="e#2538#2548#0" expanded="true" />
+                <element signature="e#2654#2675#0" expanded="true" />
+                <element signature="e#2796#2810#0" expanded="true" />
+                <element signature="e#2915#2925#0" expanded="true" />
+                <element signature="e#3042#3055#0" expanded="true" />
+                <element signature="e#3241#3247#0" expanded="true" />
+                <element signature="e#3311#3332#0" expanded="true" />
                 <element signature="method#onActivityCreated#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#6516#7180#0" expanded="true" />
+                <element signature="e#7169#7170#0" expanded="true" />
+                <element signature="e#7225#7754#0" expanded="true" />
+                <element signature="e#7743#7744#0" expanded="true" />
+                <element signature="e#7796#8019#0" expanded="true" />
+                <element signature="e#8008#8009#0" expanded="true" />
+                <element signature="e#9437#9465#0" expanded="true" />
+                <element signature="e#9551#9585#0" expanded="true" />
+                <element signature="e#9756#9788#0" expanded="true" />
+                <element signature="e#12138#13041#0" expanded="true" />
+                <element signature="e#13030#13031#0" expanded="true" />
                 <element signature="method#clickWhenSearchItem#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#13719#13735#0" expanded="true" />
                 <element signature="method#clickWhenActionItem#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#14467#14509#0" expanded="true" />
+                <element signature="e#16207#16249#0" expanded="true" />
+                <element signature="e#16882#16928#0" expanded="true" />
                 <element signature="method#clickWhenRepo#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#17832#17848#0" expanded="true" />
                 <element signature="method#clickWhenStar#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#18790#18806#0" expanded="true" />
                 <element signature="method#clickWhenBookmark#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#19989#20005#0" expanded="true" />
                 <element signature="method#clickWhenRepoContent#0;class#MainFragment#0" expanded="false" />
                 <element signature="method#clickWhenStarContent#0;class#MainFragment#0" expanded="false" />
                 <element signature="method#hideWhenStar#0;class#MainFragment#0" expanded="false" />
@@ -123,11 +146,14 @@
                 <element signature="method#hideWhenBookmark#0;class#MainFragment#0" expanded="false" />
                 <element signature="method#showWhenRepo#0;class#MainFragment#0" expanded="false" />
                 <element signature="method#changeToRepo#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#25853#25870#0" expanded="true" />
                 <element signature="method#changeToBookmark#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#26548#26571#0" expanded="true" />
                 <element signature="method#changeToStar#0;class#MainFragment#0" expanded="false" />
+                <element signature="e#27234#27253#0" expanded="true" />
                 <element signature="method#backFromBookmark#0;class#MainFragment#0" expanded="false" />
-                <element signature="e#25960#25961#0" expanded="true" />
-                <element signature="e#25989#25990#0" expanded="true" />
+                <element signature="method#backToPrevious#0;class#MainFragment#0" expanded="false" />
+                <element signature="method#nullOrLow#0;class#MainFragment#0" expanded="false" />
                 <element signature="method#allTaskDown#0;class#MainFragment#0" expanded="false" />
               </folding>
             </state>
@@ -186,14 +212,14 @@
         <option value="$PROJECT_DIR$/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/res/layout/main.xml" />
         <option value="$PROJECT_DIR$/res/layout/login.xml" />
-        <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/RepoContentTask.java" />
-        <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/StarContentTask.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/AddTask.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Star/StarTask.java" />
         <option value="$PROJECT_DIR$/res/menu/repo_item_overflow.xml" />
         <option value="$PROJECT_DIR$/res/menu/bookmark_choice_menu.xml" />
         <option value="$PROJECT_DIR$/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/StarContentTask.java" />
+        <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/RepoContentTask.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java" />
       </list>
     </option>
@@ -249,7 +275,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -332,6 +357,50 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bitocle" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Database" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bitocle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bitocle" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bitocle" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Content" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bitocle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Bitocle" />
+              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="res" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -339,6 +408,7 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -396,6 +466,19 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method />
+    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -421,19 +504,6 @@
       <envs />
       <properties />
       <listeners />
-      <method />
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -559,63 +629,35 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-2" y="-3" width="1370" height="748" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3846154" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="184" y="30" width="409" height="625" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.80738366" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" x="701" y="103" width="637" height="503" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32380953" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24773414" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.80738366" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" x="701" y="103" width="637" height="503" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3227848" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24773414" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32744783" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17522658" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1918429" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31746033" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.1589085" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="95" y="210" width="1066" height="350" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.1589085" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="141" y="75" width="1074" height="375" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.34189406" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="191" y="268" width="637" height="340" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39954683" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5740181" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39954683" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5740181" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.20996979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="922" y="86" width="352" height="579" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.20996979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="868" y="89" width="352" height="579" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.26349208" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="189" y="200" width="998" height="438" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3846154" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="184" y="30" width="409" height="625" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24960753" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32744783" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.34189406" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="191" y="268" width="637" height="340" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.40345368" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="826" y="29" width="315" height="645" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.48253968" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="189" y="200" width="998" height="438" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.80738366" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" x="701" y="103" width="637" height="503" />
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3846154" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" x="184" y="30" width="409" height="625" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3258427" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31746033" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.1589085" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="45" y="275" width="1066" height="350" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5745683" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -641,20 +683,38 @@
           <line>37</line>
           <properties />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
+          <line>1015</line>
+          <properties />
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
+          <line>996</line>
+          <properties />
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
+          <line>936</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>621</line>
-          <properties class="io.github.mthli.Bitocle.Main.MainFragment" method="showWhenRepo" />
+          <line>726</line>
+          <properties class="io.github.mthli.Bitocle.Main.MainFragment" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>609</line>
-          <properties class="io.github.mthli.Bitocle.Main.MainFragment" method="hideWhenBookmark" />
+          <line>714</line>
+          <properties class="io.github.mthli.Bitocle.Main.MainFragment" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="4" />
+      <option name="time" value="8" />
     </breakpoint-manager>
   </component>
   <component name="antWorkspaceConfiguration">
@@ -662,6 +722,62 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2355">
+          <caret line="757" column="22" selection-start-line="757" selection-start-column="22" selection-end-line="757" selection-end-column="22" />
+          <folding>
+            <element signature="e#2538#2548#0" expanded="true" />
+            <element signature="e#2654#2675#0" expanded="true" />
+            <element signature="e#2796#2810#0" expanded="true" />
+            <element signature="e#2915#2925#0" expanded="true" />
+            <element signature="e#3042#3055#0" expanded="true" />
+            <element signature="e#3241#3247#0" expanded="true" />
+            <element signature="e#3311#3332#0" expanded="true" />
+            <element signature="method#onActivityCreated#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#6516#7180#0" expanded="true" />
+            <element signature="e#7169#7170#0" expanded="true" />
+            <element signature="e#7225#7754#0" expanded="true" />
+            <element signature="e#7743#7744#0" expanded="true" />
+            <element signature="e#7796#8019#0" expanded="true" />
+            <element signature="e#8008#8009#0" expanded="true" />
+            <element signature="e#9437#9465#0" expanded="true" />
+            <element signature="e#9551#9585#0" expanded="true" />
+            <element signature="e#9756#9788#0" expanded="true" />
+            <element signature="e#12138#13041#0" expanded="true" />
+            <element signature="e#13030#13031#0" expanded="true" />
+            <element signature="method#clickWhenSearchItem#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#13719#13735#0" expanded="true" />
+            <element signature="method#clickWhenActionItem#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#14467#14509#0" expanded="true" />
+            <element signature="e#16207#16249#0" expanded="true" />
+            <element signature="e#16882#16928#0" expanded="true" />
+            <element signature="method#clickWhenRepo#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#17832#17848#0" expanded="true" />
+            <element signature="method#clickWhenStar#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#18790#18806#0" expanded="true" />
+            <element signature="method#clickWhenBookmark#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#19989#20005#0" expanded="true" />
+            <element signature="method#clickWhenRepoContent#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#clickWhenStarContent#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#hideWhenStar#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#hideWhenContent#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#hideWhenBookmark#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#showWhenRepo#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#changeToRepo#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#25853#25870#0" expanded="true" />
+            <element signature="method#changeToBookmark#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#26548#26571#0" expanded="true" />
+            <element signature="method#changeToStar#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#27234#27253#0" expanded="true" />
+            <element signature="method#backFromBookmark#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#backToPrevious#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#nullOrLow#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#allTaskDown#0;class#MainFragment#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/github/johnpersano/supertoasts/ManagerSuperToast.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="219" max-vertical-offset="3795">
@@ -765,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4716981" vertical-offset="820" max-vertical-offset="1755">
           <caret line="73" column="75" selection-start-line="73" selection-start-column="75" selection-end-line="73" selection-end-column="75" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -780,7 +895,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.424" vertical-offset="1130" max-vertical-offset="1755">
           <caret line="93" column="10" selection-start-line="93" selection-start-column="10" selection-end-line="93" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -818,14 +932,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/bookmark_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.28801432" vertical-offset="401" max-vertical-offset="1005">
           <caret line="16" column="47" selection-start-line="16" selection-start-column="47" selection-end-line="16" selection-end-column="47" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../Release/Bitocle/2.0/Bitocle/src/io/github/mthli/Bitocle/Main/MainFragment.java">
@@ -839,7 +952,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.049751244" vertical-offset="0" max-vertical-offset="1110">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,14 +992,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/repo_item.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1725">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/drawable/main_header_shape.xml">
@@ -898,14 +1009,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/main.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.653846" vertical-offset="158" max-vertical-offset="735">
           <caret line="29" column="49" selection-start-line="29" selection-start-column="49" selection-end-line="29" selection-end-column="49" />
           <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/values/colors.xml">
@@ -939,16 +1050,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/res/layout/login.xml">
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3119584" vertical-offset="45" max-vertical-offset="705">
           <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-          <folding>
-            <element signature="e#597#621#0" expanded="false" />
-          </folding>
         </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Bookmark/BookmarkTask.java">
@@ -958,28 +1066,6 @@
           <folding>
             <element signature="method#onCancelled#0;class#BookmarkTask#0" expanded="false" />
             <element signature="method#onProgressUpdate#0;class#BookmarkTask#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/StarContentTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.3880597" vertical-offset="1092" max-vertical-offset="1695">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-          <folding>
-            <element signature="method#onPreExecute#0;class#StarContentTask#0" expanded="false" />
-            <element signature="method#doInBackground#0;class#StarContentTask#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/RepoContentTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1047" max-vertical-offset="1740">
-          <caret line="127" column="24" selection-start-line="127" selection-start-column="24" selection-end-line="127" selection-end-column="24" />
-          <folding>
-            <element signature="method#onPreExecute#0;class#RepoContentTask#0" expanded="false" />
-            <element signature="method#doInBackground#0;class#RepoContentTask#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1037,7 +1123,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="603">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1045,7 +1130,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
           <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1053,7 +1137,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13729978" vertical-offset="0" max-vertical-offset="437">
           <caret line="4" column="27" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,19 +1148,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/StarContentTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1092" max-vertical-offset="1695">
+          <caret line="136" column="25" selection-start-line="136" selection-start-column="25" selection-end-line="136" selection-end-column="25" />
+          <folding>
+            <element signature="method#onPreExecute#0;class#StarContentTask#0" expanded="false" />
+            <element signature="method#doInBackground#0;class#StarContentTask#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/RepoContentTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.164179" vertical-offset="0" max-vertical-offset="1740">
+          <caret line="139" column="37" selection-start-line="139" selection-start-column="37" selection-end-line="139" selection-end-column="37" />
+          <folding>
+            <element signature="method#onPreExecute#0;class#RepoContentTask#0" expanded="false" />
+            <element signature="method#doInBackground#0;class#RepoContentTask#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46600333" vertical-offset="1219" max-vertical-offset="2355">
-          <caret line="757" column="22" selection-start-line="757" selection-start-column="22" selection-end-line="757" selection-end-column="22" />
+        <state vertical-scroll-proportion="-1.3383085" vertical-offset="2292" max-vertical-offset="2895">
+          <caret line="103" column="5" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#3392#3400#0" expanded="true" />
+            <element signature="e#2538#2548#0" expanded="true" />
+            <element signature="e#2654#2675#0" expanded="true" />
+            <element signature="e#2796#2810#0" expanded="true" />
+            <element signature="e#2915#2925#0" expanded="true" />
+            <element signature="e#3042#3055#0" expanded="true" />
+            <element signature="e#3241#3247#0" expanded="true" />
+            <element signature="e#3311#3332#0" expanded="true" />
             <element signature="method#onActivityCreated#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#6516#7180#0" expanded="true" />
+            <element signature="e#7169#7170#0" expanded="true" />
+            <element signature="e#7225#7754#0" expanded="true" />
+            <element signature="e#7743#7744#0" expanded="true" />
+            <element signature="e#7796#8019#0" expanded="true" />
+            <element signature="e#8008#8009#0" expanded="true" />
+            <element signature="e#9437#9465#0" expanded="true" />
+            <element signature="e#9551#9585#0" expanded="true" />
+            <element signature="e#9756#9788#0" expanded="true" />
+            <element signature="e#12138#13041#0" expanded="true" />
+            <element signature="e#13030#13031#0" expanded="true" />
             <element signature="method#clickWhenSearchItem#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#13719#13735#0" expanded="true" />
             <element signature="method#clickWhenActionItem#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#14467#14509#0" expanded="true" />
+            <element signature="e#16207#16249#0" expanded="true" />
+            <element signature="e#16882#16928#0" expanded="true" />
             <element signature="method#clickWhenRepo#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#17832#17848#0" expanded="true" />
             <element signature="method#clickWhenStar#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#18790#18806#0" expanded="true" />
             <element signature="method#clickWhenBookmark#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#19989#20005#0" expanded="true" />
             <element signature="method#clickWhenRepoContent#0;class#MainFragment#0" expanded="false" />
             <element signature="method#clickWhenStarContent#0;class#MainFragment#0" expanded="false" />
             <element signature="method#hideWhenStar#0;class#MainFragment#0" expanded="false" />
@@ -1085,11 +1213,14 @@
             <element signature="method#hideWhenBookmark#0;class#MainFragment#0" expanded="false" />
             <element signature="method#showWhenRepo#0;class#MainFragment#0" expanded="false" />
             <element signature="method#changeToRepo#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#25853#25870#0" expanded="true" />
             <element signature="method#changeToBookmark#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#26548#26571#0" expanded="true" />
             <element signature="method#changeToStar#0;class#MainFragment#0" expanded="false" />
+            <element signature="e#27234#27253#0" expanded="true" />
             <element signature="method#backFromBookmark#0;class#MainFragment#0" expanded="false" />
-            <element signature="e#25960#25961#0" expanded="true" />
-            <element signature="e#25989#25990#0" expanded="true" />
+            <element signature="method#backToPrevious#0;class#MainFragment#0" expanded="false" />
+            <element signature="method#nullOrLow#0;class#MainFragment#0" expanded="false" />
             <element signature="method#allTaskDown#0;class#MainFragment#0" expanded="false" />
           </folding>
         </state>
