@@ -31,7 +31,6 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
     private String name;
     private Tree root;
     private TreeEntry entry;
-    private List<Tree> roots;
 
     public StarContentTask(MainFragment fragment) {
         this.fragment = fragment;
@@ -51,7 +50,6 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
         name = fragment.getName();
         root = fragment.getRoot();
         entry = fragment.getEntry();
-        roots = fragment.getRoots();
 
         if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
             fragment.setContentShown(false);
@@ -108,12 +106,6 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
     protected void onPostExecute(Boolean result) {
         if (result) {
             if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
-                if (flag == Flag.STAR_CONTENT_FIRST) {
-                    roots.add(root);
-                } else {
-                    roots.remove(roots.size() - 1);
-                    roots.add(root);
-                }
                 fragment.setRoot(root);
             }
             List<TreeEntry> entries = root.getTree();

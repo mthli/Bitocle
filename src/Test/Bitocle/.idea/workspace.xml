@@ -93,8 +93,8 @@
         <option name="LOG_MESSAGE" value="" />
       </breakpoint>
     </breakpoint_any>
-    <breakpoint_rules converted="true" />
     <ui_properties converted="true" />
+    <breakpoint_rules converted="true" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -158,10 +158,10 @@
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/AddTask.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/RepoTask.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/RepoItemAdapter.java" />
+        <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/StarContentTask.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/RepoContentTask.java" />
         <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java" />
-        <option value="$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -216,8 +216,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -286,51 +284,7 @@
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Main" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bitocle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bitocle" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bitocle" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="Content" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bitocle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bitocle" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bitocle" />
-              <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Bookmark" />
               <option name="myItemType" value="com.android.tools.idea.gradle.projectView.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -350,6 +304,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -407,19 +363,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -445,6 +388,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -584,18 +540,18 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1918429" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31746033" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.1589085" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="27" y="97" width="1312" height="394" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.1589085" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" x="-2" y="-3" width="1370" height="748" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.34189406" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" x="191" y="268" width="637" height="340" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39954683" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5740181" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.20996979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="827" y="70" width="352" height="579" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25873017" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="189" y="200" width="998" height="438" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.20996979" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" x="775" y="42" width="352" height="579" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25714287" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="189" y="200" width="998" height="438" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3846154" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="184" y="30" width="409" height="625" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32222223" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -618,44 +574,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>1126</line>
-          <properties />
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>1107</line>
-          <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>1043</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>277</line>
-          <properties />
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>759</line>
-          <properties class="io.github.mthli.Bitocle.Main.MainFragment" />
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java</url>
-          <line>747</line>
-          <properties class="io.github.mthli.Bitocle.Main.MainFragment" />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
       <option name="time" value="12" />
     </breakpoint-manager>
   </component>
@@ -950,7 +868,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.048027445" vertical-offset="407" max-vertical-offset="990">
           <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -962,62 +879,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Star/StarTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.024875622" vertical-offset="0" max-vertical-offset="1215">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding>
-            <element signature="method#onPreExecute#0;class#StarTask#0" expanded="false" />
-            <element signature="method#doInBackground#0;class#StarTask#0" expanded="false" />
-            <element signature="method#onCancelled#0;class#StarTask#0" expanded="false" />
-            <element signature="method#onProgressUpdate#0;class#StarTask#0" expanded="false" />
-            <element signature="e#2493#2517#0" expanded="true" />
-            <element signature="e#2843#2868#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/Flag.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.49751243" vertical-offset="0" max-vertical-offset="603">
           <caret line="20" column="56" selection-start-line="20" selection-start-column="56" selection-end-line="20" selection-end-column="56" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Commit/CommitTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.31840795" vertical-offset="597" max-vertical-offset="1785">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/RepoTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3648" vertical-offset="1542" max-vertical-offset="2280">
-          <caret line="167" column="47" selection-start-line="167" selection-start-column="47" selection-end-line="167" selection-end-column="47" />
-          <folding>
-            <element signature="method#doInBackground#0;class#RepoTask#0" expanded="false" />
-            <element signature="e#4017#4038#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/AddTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5454545" vertical-offset="1135" max-vertical-offset="2430">
-          <caret line="174" column="57" selection-start-line="174" selection-start-column="57" selection-end-line="174" selection-end-column="57" />
-          <folding>
-            <element signature="method#doInBackground#0;class#AddTask#0" expanded="false" />
-            <element signature="method#onCancelled#0;class#AddTask#0" expanded="false" />
-            <element signature="method#onProgressUpdate#0;class#AddTask#0" expanded="false" />
-            <element signature="e#3733#3776#0" expanded="true" />
-            <element signature="e#4101#4122#0" expanded="true" />
-            <element signature="e#5474#5498#0" expanded="true" />
-            <element signature="e#6110#6157#0" expanded="true" />
-            <element signature="e#6418#6461#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1037,50 +903,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/StarContentTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="222" max-vertical-offset="1635">
-          <caret line="138" column="17" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#onPreExecute#0;class#StarContentTask#0" expanded="false" />
-            <element signature="method#doInBackground#0;class#StarContentTask#0" expanded="false" />
-            <element signature="method#onCancelled#0;class#StarContentTask#0" expanded="false" />
-            <element signature="method#onProgressUpdate#0;class#StarContentTask#0" expanded="false" />
-            <element signature="e#4147#4174#0" expanded="true" />
-            <element signature="e#5006#5033#0" expanded="true" />
-            <element signature="e#5397#5425#0" expanded="true" />
-            <element signature="e#5618#5668#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/RepoContentTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.056" vertical-offset="1025" max-vertical-offset="1650">
-          <caret line="139" column="17" selection-start-line="139" selection-start-column="17" selection-end-line="139" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="method#onPreExecute#0;class#RepoContentTask#0" expanded="false" />
-            <element signature="method#doInBackground#0;class#RepoContentTask#0" expanded="false" />
-            <element signature="method#onCancelled#0;class#RepoContentTask#0" expanded="false" />
-            <element signature="method#onProgressUpdate#0;class#RepoContentTask#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8706468" vertical-offset="1125" max-vertical-offset="2145">
-          <caret line="110" column="44" selection-start-line="110" selection-start-column="44" selection-end-line="110" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1374" max-vertical-offset="2145">
+          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Star/StarTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="61" max-vertical-offset="1215">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="method#onPreExecute#0;class#StarTask#0" expanded="false" />
+            <element signature="method#doInBackground#0;class#StarTask#0" expanded="false" />
+            <element signature="method#onCancelled#0;class#StarTask#0" expanded="false" />
+            <element signature="method#onProgressUpdate#0;class#StarTask#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/RepoTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1360" max-vertical-offset="2280">
+          <caret line="119" column="65" selection-start-line="119" selection-start-column="65" selection-end-line="119" selection-end-column="65" />
+          <folding>
+            <element signature="method#doInBackground#0;class#RepoTask#0" expanded="false" />
+            <element signature="e#4017#4038#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Repo/AddTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3966942" vertical-offset="700" max-vertical-offset="2430">
+          <caret line="156" column="42" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
+          <folding>
+            <element signature="method#doInBackground#0;class#AddTask#0" expanded="false" />
+            <element signature="method#onCancelled#0;class#AddTask#0" expanded="false" />
+            <element signature="method#onProgressUpdate#0;class#AddTask#0" expanded="false" />
+            <element signature="e#4101#4122#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Commit/CommitTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28099173" vertical-offset="235" max-vertical-offset="1785">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Bookmark/BookmarkTask.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7164179" vertical-offset="867" max-vertical-offset="1470">
-          <caret line="31" column="46" selection-start-line="31" selection-start-column="46" selection-end-line="31" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.54545456" vertical-offset="810" max-vertical-offset="1470">
+          <caret line="82" column="35" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
           <folding>
             <element signature="method#onCancelled#0;class#BookmarkTask#0" expanded="false" />
             <element signature="method#onProgressUpdate#0;class#BookmarkTask#0" expanded="false" />
@@ -1088,28 +967,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/StarContentTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.28760332" vertical-offset="954" max-vertical-offset="1785">
+          <caret line="107" column="87" selection-start-line="107" selection-start-column="87" selection-end-line="107" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#doInBackground#0;class#StarContentTask#0" expanded="false" />
+            <element signature="method#onCancelled#0;class#StarContentTask#0" expanded="false" />
+            <element signature="method#onProgressUpdate#0;class#StarContentTask#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Main/MainFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.32504147" vertical-offset="2579" max-vertical-offset="3195">
-          <caret line="838" column="35" selection-start-line="838" selection-start-column="35" selection-end-line="838" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.70149255" vertical-offset="2502" max-vertical-offset="3105">
+          <caret line="941" column="33" selection-start-line="941" selection-start-column="33" selection-end-line="941" selection-end-column="33" />
           <folding>
             <element signature="e#2761#2771#0" expanded="true" />
             <element signature="e#2892#2906#0" expanded="true" />
             <element signature="e#3011#3021#0" expanded="true" />
             <element signature="e#3138#3151#0" expanded="true" />
             <element signature="e#3264#3276#0" expanded="true" />
-            <element signature="e#3462#3468#0" expanded="true" />
-            <element signature="e#3532#3553#0" expanded="true" />
             <element signature="method#onActivityCreated#0;class#MainFragment#0" expanded="false" />
             <element signature="method#clickWhenSearchItem#0;class#MainFragment#0" expanded="false" />
-            <element signature="e#14755#14771#0" expanded="true" />
             <element signature="method#clickWhenActionItem#0;class#MainFragment#0" expanded="false" />
             <element signature="method#clickWhenRepo#0;class#MainFragment#0" expanded="false" />
-            <element signature="e#19073#19089#0" expanded="true" />
             <element signature="method#clickWhenStar#0;class#MainFragment#0" expanded="false" />
-            <element signature="e#20031#20047#0" expanded="true" />
             <element signature="method#clickWhenBookmark#0;class#MainFragment#0" expanded="false" />
-            <element signature="e#21230#21246#0" expanded="true" />
             <element signature="method#clickWhenRepoContent#0;class#MainFragment#0" expanded="false" />
             <element signature="method#clickWhenStarContent#0;class#MainFragment#0" expanded="false" />
             <element signature="method#hideWhenStar#0;class#MainFragment#0" expanded="false" />
@@ -1124,12 +1010,25 @@
             <element signature="method#backFromBookmark#0;class#MainFragment#0" expanded="false" />
             <element signature="method#backFromCommit#0;class#MainFragment#0" expanded="false" />
             <element signature="method#backToPrevious#0;class#MainFragment#0" expanded="false" />
-            <element signature="method#nullOrLow#0;class#MainFragment#0" expanded="false" />
             <element signature="method#allTaskDown#0;class#MainFragment#0" expanded="false" />
             <element signature="method#refreshAction#0;class#MainFragment#0" expanded="false" />
-            <element signature="e#40332#40397#0" expanded="true" />
-            <element signature="e#41083#41147#0" expanded="true" />
-            <element signature="e#41897#41961#0" expanded="true" />
+            <element signature="e#34958#35023#0" expanded="true" />
+            <element signature="e#35709#35773#0" expanded="true" />
+            <element signature="e#36523#36587#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/io/github/mthli/Bitocle/Content/RepoContentTask.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.688" vertical-offset="695" max-vertical-offset="1545">
+          <caret line="147" column="24" selection-start-line="147" selection-start-column="24" selection-end-line="147" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#onPreExecute#0;class#RepoContentTask#0" expanded="false" />
+            <element signature="method#doInBackground#0;class#RepoContentTask#0" expanded="false" />
+            <element signature="method#onCancelled#0;class#RepoContentTask#0" expanded="false" />
+            <element signature="method#onProgressUpdate#0;class#RepoContentTask#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -32,7 +32,6 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
 
     private Tree root;
     private TreeEntry entry;
-    private List<Tree> roots;
 
     public RepoContentTask(MainFragment fragment) {
         this.fragment = fragment;
@@ -52,7 +51,6 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
         name = fragment.getName();
         root = fragment.getRoot();
         entry = fragment.getEntry();
-        roots = fragment.getRoots();
 
         if (flag == Flag.REPO_CONTENT_FIRST || flag == Flag.REPO_CONTENT_REFRESH) {
             fragment.setContentShown(false);
@@ -109,12 +107,6 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
     protected void onPostExecute(Boolean result) {
         if (result) {
             if (flag == Flag.REPO_CONTENT_FIRST || flag == Flag.REPO_CONTENT_REFRESH) {
-                if (flag == Flag.REPO_CONTENT_FIRST) {
-                    roots.add(root);
-                } else {
-                    roots.remove(roots.size() - 1);
-                    roots.add(root);
-                }
                 fragment.setRoot(root);
             }
             List<TreeEntry> entries = root.getTree();

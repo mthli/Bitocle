@@ -89,8 +89,7 @@ public class MainFragment extends ProgressFragment {
 
     private Tree root;
     private TreeEntry entry;
-    private List<Tree> roots = new ArrayList<Tree>();
-    private List<Map<String, String>> buffer = new ArrayList<Map<String, String>>();
+    private String prefix;
     private boolean toggle = false;
 
     private RepoTask repoTask;
@@ -107,9 +106,6 @@ public class MainFragment extends ProgressFragment {
 
     public int getFlag() {
         return flag;
-    }
-    public void setFlag(int flag) {
-        this.flag = flag;
     }
 
     public ListView getListView() {
@@ -198,10 +194,6 @@ public class MainFragment extends ProgressFragment {
         return entry;
     }
 
-    public List<Tree> getRoots() {
-        return roots;
-    }
-
     public boolean isToggle() {
         return toggle;
     }
@@ -273,18 +265,6 @@ public class MainFragment extends ProgressFragment {
                 clickWhenSearchItem(view);
             }
         });
-
-        /*
-        autoAdapter = new SimpleAdapter(
-                view.getContext(),
-                autoList,
-                R.layout.auto_item,
-                new String[] {"owner", "name"},
-                new int[] {R.id.auto_item_owner, R.id.auto_item_name}
-        );
-        autoAdapter.notifyDataSetChanged();
-        search.setAdapter(autoAdapter);
-        */
 
         repoItemAdapter = new RepoItemAdapter(
                 MainFragment.this,
@@ -438,15 +418,8 @@ public class MainFragment extends ProgressFragment {
 
         root = null;
         entry = null;
-        roots.clear();
-        buffer.clear();
-
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("prefix", "/");
-        map.put("suffix", "/");
-        map.put("owner", owner);
-        map.put("name", name);
-        buffer.add(map);
+        toggle = false;
+        prefix = "/";
 
         listView.setAdapter(contentItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
@@ -485,13 +458,11 @@ public class MainFragment extends ProgressFragment {
                             b.setOwner(owner);
                             b.setName(name);
 
-                            Map<String, String> map = buffer.get(buffer.size() - 1);
                             if (toggle) {
-                                String str = map.get("prefix");
-                                if (str.equals("/")) {
+                                if (prefix.equals("/")) {
                                     b.setPath(e.getPath());
                                 } else {
-                                    b.setPath(str + "/" + e.getPath());
+                                    b.setPath(prefix + "/" + e.getPath());
                                 }
                             } else {
                                 b.setPath(e.getPath());
@@ -554,15 +525,8 @@ public class MainFragment extends ProgressFragment {
 
         root = null;
         entry = null;
-        roots.clear();
-        buffer.clear();
-
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("prefix", "/");
-        map.put("suffix", "/");
-        map.put("owner", owner);
-        map.put("name", name);
-        buffer.add(map);
+        toggle = false;
+        prefix = "/";
 
         listView.setAdapter(contentItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
@@ -587,15 +551,8 @@ public class MainFragment extends ProgressFragment {
 
         root = null;
         entry = null;
-        roots.clear();
-        buffer.clear();
-
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("prefix", "/");
-        map.put("suffix", "/");
-        map.put("owner", owner);
-        map.put("name", name);
-        buffer.add(map);
+        toggle = false;
+        prefix = "/";
 
         listView.setAdapter(contentItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
@@ -627,13 +584,10 @@ public class MainFragment extends ProgressFragment {
             listView.setAdapter(contentItemAdapter);
             contentItemAdapter.notifyDataSetChanged();
 
-            Map<String, String> map = new HashMap<String, String>();
-            map.put("prefix", bookmarkItem.getPath());
-            map.put("suffix", "/");
-            map.put("owner", owner);
-            map.put("name", name);
-            buffer.add(map);
+            root = null;
             entry = null;
+            toggle = true;
+            prefix = bookmarkItem.getPath();
 
             switch (flag) {
                 case Flag.REPO_FIRST:
@@ -674,24 +628,21 @@ public class MainFragment extends ProgressFragment {
         allTaskDown();
 
         ContentItem item = contentItemList.get(position);
-        Map<String, String> map = buffer.get(buffer.size() - 1);
 
         if (item.getEntry().getType().equals("tree")) {
             entry = item.getEntry();
-            map.put("suffix", entry.getPath());
 
             String[] arr = entry.getPath().split("/");
             title = arr[arr.length - 1];
             if (toggle) {
-                String str = map.get("prefix");
-                if (str.equals("/")) {
+                if (prefix.equals("/")) {
                     subTitle = name
                             + "/"
                             + entry.getPath();
                 } else {
                     subTitle = name
                             + "/"
-                            + str
+                            + prefix
                             + "/"
                             + entry.getPath();
                 }
@@ -715,24 +666,21 @@ public class MainFragment extends ProgressFragment {
         allTaskDown();
 
         ContentItem item = contentItemList.get(position);
-        Map<String, String> map = buffer.get(buffer.size() - 1);
 
         if (item.getEntry().getType().equals("tree")) {
             entry = item.getEntry();
-            map.put("suffix", entry.getPath());
 
             String[] arr = entry.getPath().split("/");
             title = arr[arr.length - 1];
             if (toggle) {
-                String str = map.get("prefix");
-                if (str.equals("/")) {
+                if (prefix.equals("/")) {
                     subTitle = name
                             + "/"
                             + entry.getPath();
                 } else {
                     subTitle = name
                             + "/"
-                            + str
+                            + prefix
                             + "/"
                             + entry.getPath();
                 }
@@ -824,9 +772,8 @@ public class MainFragment extends ProgressFragment {
 
         entry = null;
         root = null;
-        roots.clear();
-        buffer.clear();
         toggle = false;
+        prefix = "/";
 
         listView.setAdapter(repoItemAdapter);
         repoItemAdapter.notifyDataSetChanged();
@@ -845,8 +792,6 @@ public class MainFragment extends ProgressFragment {
         actionBar.setTitle(R.string.bookmark_label);
         actionBar.setSubtitle(null);
         actionBar.setDisplayHomeAsUpEnabled(true);
-
-        toggle = true;
 
         listView.setAdapter(bookmarkItemAdapter);
         bookmarkItemAdapter.notifyDataSetChanged();
@@ -869,9 +814,8 @@ public class MainFragment extends ProgressFragment {
 
         entry = null;
         root = null;
-        roots.clear();
-        buffer.clear();
         toggle = false;
+        prefix = "/";
 
         listView.setAdapter(commitItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
@@ -914,9 +858,8 @@ public class MainFragment extends ProgressFragment {
 
         entry = null;
         root = null;
-        roots.clear();
-        buffer.clear();
         toggle = false;
+        prefix = "/";
 
         listView.setAdapter(starItemAdapter);
         starItemAdapter.notifyDataSetChanged();
@@ -999,158 +942,72 @@ public class MainFragment extends ProgressFragment {
     public void backToPrevious() {
         allTaskDown();
 
-        String entryPath;
+        String path;
         try {
-            entryPath = entry.getPath();
+            path = entry.getPath();
         } catch (NullPointerException n) {
-            nullOrLow();
-            return;
-        }
-
-        String[] entryArr = entryPath.split("/");
-        if (entryArr.length <= 0) {
-            nullOrLow();
-        } else {
-            Map<String, String> map = buffer.get(buffer.size() - 1);
-            String prefix = map.get("prefix");
-            owner = map.get("owner"); //
-            name = map.get("name"); //
-
-            contentItemList.clear();
-            if (entryArr.length == 1) {
-                if (prefix.equals("/")) {
-                    title = name;
-                    subTitle = name;
-                } else {
-                    title = prefix.split("/")[prefix.split("/").length - 1];
-                    subTitle = name + "/" + prefix;
-                }
-                actionBar.setTitle(title);
-                actionBar.setSubtitle(subTitle);
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-                for (TreeEntry e: root.getTree()) {
-                    String temp = e.getPath();
-                    if (temp.split("/").length == 1) {
-                        contentItemList.add(new ContentItem(e));
-                    }
-                }
-                entry = null;
-            } else {
-                String str = entryArr[0];
-                for (int i = 1; i < entryArr.length - 1; i++) {
-                    str = str + "/" + entryArr[i];
-                }
-                title = str.split("/")[str.split("/").length - 1];
-                if (prefix.equals("/")) {
-                    subTitle = name + "/" + str;
-                } else {
-                    subTitle = name + "/" + prefix + "/" + str;
-                }
-                actionBar.setTitle(title);
-                actionBar.setSubtitle(subTitle);
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-                for (TreeEntry e : root.getTree()) {
-                    String temp = e.getPath();
-                    if (
-                            (temp.split("/").length - 1 == str.split("/").length)
-                            && temp.startsWith(str)
-                    ) {
-                        contentItemList.add(new ContentItem(e));
-                    }
-                    if (e.getPath().equals(str)) {
-                        entry = e;
-                    }
-                }
-            }
-            Collections.sort(contentItemList);
-            contentItemAdapter.notifyDataSetChanged();
-        }
-    }
-
-    private void nullOrLow() {
-        if (buffer.size() <= 1) {
-            switch (flag) {
-                case Flag.REPO_CONTENT_FIRST:
-                case Flag.REPO_CONTENT_SECOND:
-                case Flag.REPO_CONTENT_REFRESH:
+            switch (currentId) {
+                case REPO_CONTENT_ID:
                     changeToRepo(Flag.REPO_SECOND);
                     break;
-                case Flag.STAR_CONTENT_FIRST:
-                case Flag.STAR_CONTENT_SECOND:
-                case Flag.STAR_CONTENT_REFRESH:
+                case STAR_CONTENT_ID:
                     changeToStar(false);
                     break;
                 default:
                     break;
             }
-        } else {
-            buffer.remove(buffer.size() - 1);
-            try {
-                root = roots.get(roots.size() - 2);
-                roots.remove(roots.size() - 1);
-            } catch (ArrayIndexOutOfBoundsException a) {
-                root = roots.get(roots.size() - 1);
-            }
-            Map<String, String> map = buffer.get(buffer.size() - 1);
-
-            String prefix = map.get("prefix");
-            String path = map.get("suffix");
-            owner = map.get("owner");
-            name = map.get("name");
-
-            setContentEmpty(false);
-            setContentShown(true);
-            contentItemList.clear();
-
-            if (path.equals("/")) {
-                if (prefix.equals("/")) {
-                    title = name;
-                    subTitle = name;
-                } else {
-                    title = prefix.split("/")[prefix.split("/").length - 1];
-                    subTitle = name + "/" + prefix;
-                }
-                actionBar.setTitle(title);
-                actionBar.setSubtitle(subTitle);
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-                for (TreeEntry e: root.getTree()) {
-                    String temp = e.getPath();
-                    if (temp.split("/").length == 1) {
-                        contentItemList.add(new ContentItem(e));
-                    }
-                }
-                entry = null;
-            } else {
-                String[] arr = path.split("/");
-                title = arr[arr.length - 1];
-                if (prefix.equals("/")) {
-                    subTitle = name + "/" + path;
-                } else {
-                    subTitle = name + "/" + prefix + "/" + path;
-                }
-                actionBar.setTitle(title);
-                actionBar.setSubtitle(subTitle);
-                actionBar.setDisplayHomeAsUpEnabled(true);
-
-                for (TreeEntry e : root.getTree()) {
-                    String temp = e.getPath();
-                    if (
-                            (temp.split("/").length - 1 == arr.length)
-                            && temp.startsWith(path)
-                    ) {
-                        contentItemList.add(new ContentItem(e));
-                    }
-                    if (temp.equals(path)) {
-                        entry = e;
-                    }
-                }
-            }
-            Collections.sort(contentItemList);
-            contentItemAdapter.notifyDataSetChanged();
+            return;
         }
+
+        contentItemList.clear();
+        if (path.split("/").length <= 1) {
+            for (TreeEntry e : root.getTree()) {
+                String[] a = e.getPath().split("/");
+                if (a.length == 1) {
+                    contentItemList.add(new ContentItem(e));
+                }
+            }
+
+            if (toggle) {
+                title = prefix.split("/")[prefix.split("/").length - 1];
+                subTitle = name + "/" + prefix;
+            } else {
+                title = name;
+                subTitle = name;
+            }
+            actionBar.setTitle(title);
+            actionBar.setSubtitle(subTitle);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+
+            entry = null;
+        } else {
+            String[] a = path.split("/");
+            String str = a[0];
+            for (int i = 1; i < a.length - 1; i++) {
+                str = str + "/" + a[i];
+            }
+            for (TreeEntry e : root.getTree()) {
+                String[] r = e.getPath().split("/");
+                if ((r.length - 1 == str.split("/").length) && e.getPath().startsWith(str)) {
+                    contentItemList.add(new ContentItem(e));
+                }
+                if (e.getPath().equals(str)) {
+                    entry = e;
+                }
+            }
+
+            title = str.split("/")[str.split("/").length - 1];
+            if (toggle) {
+                subTitle = name + "/" + prefix + "/" + str;
+            } else {
+                subTitle = name + "/" + str;
+            }
+            actionBar.setTitle(title);
+            actionBar.setSubtitle(subTitle);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+        Collections.sort(contentItemList);
+        contentItemAdapter.notifyDataSetChanged();
     }
 
     public void allTaskDown() {
