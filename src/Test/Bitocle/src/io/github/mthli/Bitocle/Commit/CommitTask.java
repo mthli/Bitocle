@@ -41,7 +41,6 @@ public class CommitTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onPreExecute() {
-        fragment.setContentShown(false);
         flag = fragment.getFlag();
 
         GitHubClient client = fragment.getClient();
@@ -49,6 +48,8 @@ public class CommitTask extends AsyncTask<Void, Integer, Boolean> {
 
         adapter = fragment.getCommitItemAdapter();
         list = fragment.getCommitItemList();
+
+        fragment.setContentShown(false);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class CommitTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        /* Do nothing */
+        fragment.setContentShown(true);
     }
 
     @Override

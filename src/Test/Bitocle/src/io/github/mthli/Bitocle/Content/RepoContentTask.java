@@ -2,6 +2,7 @@ package io.github.mthli.Bitocle.Content;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.view.MenuItem;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.github.johnpersano.supertoasts.util.Style;
 import io.github.mthli.Bitocle.Main.MainFragment;
@@ -25,6 +26,7 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
 
     private ContentItemAdapter adapter;
     private List<ContentItem> list;
+    private MenuItem bookmark;
 
     private DataService dataService;
     private String owner;
@@ -44,6 +46,7 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
 
         adapter = fragment.getContentItemAdapter();
         list = fragment.getContentItemList();
+        bookmark = fragment.getBookmark();
 
         GitHubClient client = fragment.getClient();
         dataService = new DataService(client);
@@ -54,6 +57,7 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
 
         if (flag == Flag.REPO_CONTENT_FIRST || flag == Flag.REPO_CONTENT_REFRESH) {
             fragment.setContentShown(false);
+            bookmark.setVisible(false);
         }
     }
 
@@ -95,7 +99,10 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        /* Do nothing */
+        if (flag == Flag.REPO_CONTENT_FIRST || flag == Flag.REPO_CONTENT_REFRESH) {
+            fragment.setContentShown(true);
+            bookmark.setVisible(true);
+        }
     }
 
     @Override
@@ -122,10 +129,12 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
                 Collections.sort(list);
 
                 if (list.size() == 0) {
+                    bookmark.setVisible(false);
                     fragment.setContentEmpty(true);
                     fragment.setEmptyText(R.string.content_empty_list);
                     fragment.setContentShown(true);
                 } else {
+                    bookmark.setVisible(true);
                     fragment.setContentEmpty(false);
                     adapter.notifyDataSetChanged();
                     fragment.setContentShown(true);
@@ -142,16 +151,19 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
                 Collections.sort(list);
 
                 if (list.size() == 0) {
+                    bookmark.setVisible(false);
                     fragment.setContentEmpty(true);
                     fragment.setEmptyText(R.string.content_empty_list);
                     fragment.setContentShown(true);
                 } else {
+                    bookmark.setVisible(true);
                     fragment.setContentEmpty(false);
                     adapter.notifyDataSetChanged();
                     fragment.setContentShown(true);
                 }
             }
         } else {
+            bookmark.setVisible(false);
             fragment.setContentEmpty(true);
             fragment.setEmptyText(R.string.content_empty_error);
             fragment.setContentShown(true);

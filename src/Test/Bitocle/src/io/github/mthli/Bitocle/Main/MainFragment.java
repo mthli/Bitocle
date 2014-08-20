@@ -120,6 +120,9 @@ public class MainFragment extends ProgressFragment {
         this.star = star;
     }
 
+    public MenuItem getBookmark() {
+        return bookmark;
+    }
     public void setBookmark(MenuItem bookmark) {
         this.bookmark = bookmark;
     }
@@ -134,6 +137,13 @@ public class MainFragment extends ProgressFragment {
 
     public AutoCompleteTextView getSearch() {
         return search;
+    }
+    public void setSearch(AutoCompleteTextView search) {
+        this.search = search;
+    }
+
+    public void setLine(View line) {
+        this.line = line;
     }
 
     public RepoItemAdapter getRepoItemAdapter() {
@@ -216,8 +226,6 @@ public class MainFragment extends ProgressFragment {
                 .setup(pull);
 
         imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        search = ((MainActivity) getActivity()).getSearch();
-        line = ((MainActivity) getActivity()).getLine();
 
         final Drawable searchIcon = getResources().getDrawable(R.drawable.ic_action_cancel);
         search.setOnTouchListener(new View.OnTouchListener() {
@@ -707,7 +715,6 @@ public class MainFragment extends ProgressFragment {
         search.setVisibility(View.GONE);
         line.setVisibility(View.GONE);
         star.setVisible(false);
-        bookmark.setVisible(true);
         about.setVisible(false);
         logout.setVisible(false);
     }
@@ -719,7 +726,6 @@ public class MainFragment extends ProgressFragment {
         search.setVisibility(View.GONE);
         line.setVisibility(View.GONE);
         star.setVisible(false);
-        bookmark.setVisible(true);
         about.setVisible(false);
         logout.setVisible(false);
     }
@@ -869,6 +875,7 @@ public class MainFragment extends ProgressFragment {
             starTask = new StarTask(MainFragment.this);
             starTask.execute();
         } else {
+            bookmark.setVisible(true);
             flag = Flag.STAR_SECOND;
         }
     }

@@ -12,7 +12,6 @@ public class MainActivity extends FragmentActivity {
     private MainFragment fragment;
 
     private AutoCompleteTextView search;
-    private View line;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,11 +23,12 @@ public class MainActivity extends FragmentActivity {
         actionBar.setSubtitle(null);
         actionBar.setHomeButtonEnabled(false);
 
-        search = (AutoCompleteTextView) findViewById(R.id.main_header_search);
-        line = findViewById(R.id.main_header_line);
+        fragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.main_fragment);
 
-        fragment = (MainFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.main_fragment);
+        search = (AutoCompleteTextView) findViewById(R.id.main_header_search);
+        View line = findViewById(R.id.main_header_line);
+        fragment.setSearch(search);
+        fragment.setLine(line);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class MainActivity extends FragmentActivity {
         MenuItem bookmark = menu.findItem(R.id.main_menu_bookmark);
         MenuItem about = menu.findItem(R.id.main_menu_about);
         MenuItem logout = menu.findItem(R.id.main_menu_logout);
-        
+
         fragment.setStar(star);
         fragment.setBookmark(bookmark);
         fragment.setAbout(about);
@@ -129,13 +129,5 @@ public class MainActivity extends FragmentActivity {
         else{
             /* Do nothing */
         }
-    }
-
-    public AutoCompleteTextView getSearch() {
-        return search;
-    }
-
-    public View getLine() {
-        return line;
     }
 }

@@ -101,7 +101,9 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        /* Do nothing */
+        if (flag == Flag.REPO_FIRST) {
+            fragment.setContentShown(true);
+        }
     }
 
     @Override

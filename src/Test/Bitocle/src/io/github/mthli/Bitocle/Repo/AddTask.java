@@ -76,7 +76,6 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
             return false;
         }
 
-
         RAction action = new RAction(context);
         try {
             action.openDatabase(true);
@@ -110,7 +109,7 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        /* Do nothing */
+        pull.setRefreshing(false);
     }
 
     @Override

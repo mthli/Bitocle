@@ -1,6 +1,7 @@
 package io.github.mthli.Bitocle.Star;
 
 import android.os.AsyncTask;
+import android.view.MenuItem;
 import io.github.mthli.Bitocle.Main.MainFragment;
 import io.github.mthli.Bitocle.R;
 import org.eclipse.egit.github.core.Repository;
@@ -18,6 +19,8 @@ public class StarTask extends AsyncTask<Void, Integer, Boolean> {
     private StarItemAdapter adapter;
     private List<StarItem> list;
 
+    private MenuItem bookmark;
+
     private WatcherService service;
     private Iterator<Repository> iterator;
 
@@ -29,11 +32,13 @@ public class StarTask extends AsyncTask<Void, Integer, Boolean> {
     protected void onPreExecute() {
         adapter = fragment.getStarItemAdapter();
         list = fragment.getStarItemList();
+        bookmark = fragment.getBookmark();
 
         GitHubClient client = fragment.getClient();
         service = new WatcherService(client);
 
         fragment.setContentShown(false);
+        bookmark.setVisible(false);
     }
 
     @Override
@@ -49,7 +54,8 @@ public class StarTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        /* Do nothing */
+        fragment.setContentShown(true);
+        bookmark.setVisible(true);
     }
 
     @Override
@@ -80,15 +86,18 @@ public class StarTask extends AsyncTask<Void, Integer, Boolean> {
             }
 
             if (list.size() == 0) {
+                bookmark.setVisible(false);
                 fragment.setContentEmpty(true);
                 fragment.setEmptyText(R.string.repo_empty_list);
                 fragment.setContentShown(true);
             } else {
+                bookmark.setVisible(true);
                 fragment.setContentEmpty(false);
                 adapter.notifyDataSetChanged();
                 fragment.setContentShown(true);
             }
         } else {
+            bookmark.setVisible(false);
             fragment.setContentEmpty(true);
             fragment.setEmptyText(R.string.repo_empty_error);
             fragment.setContentShown(true);
