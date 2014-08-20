@@ -1,6 +1,9 @@
 package io.github.mthli.Bitocle.Content;
 
+import android.content.Context;
 import android.os.AsyncTask;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
 import io.github.mthli.Bitocle.Main.Flag;
 import io.github.mthli.Bitocle.Main.MainFragment;
 import io.github.mthli.Bitocle.R;
@@ -17,6 +20,7 @@ import java.util.List;
 
 public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
     private MainFragment fragment;
+    private Context context;
     private int flag = 0;
 
     private ContentItemAdapter adapter;
@@ -35,6 +39,7 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onPreExecute() {
+        context = fragment.getContentView().getContext();
         flag = fragment.getFlag();
 
         adapter = fragment.getContentItemAdapter();
@@ -48,14 +53,14 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
         entry = fragment.getEntry();
         roots = fragment.getRoots();
 
-        if (flag == Flag.STAR_CONTENT_FIRST) {
+        if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
             fragment.setContentShown(false);
         }
     }
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        if (flag == Flag.STAR_CONTENT_FIRST) {
+        if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
             String master = "heads/master";
             RepositoryId id = RepositoryId.create(owner, name);
 
@@ -102,13 +107,18 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
     @Override
     protected void onPostExecute(Boolean result) {
         if (result) {
-            if (flag == Flag.STAR_CONTENT_FIRST) {
-                roots.add(root);
+            if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
+                if (flag == Flag.STAR_CONTENT_FIRST) {
+                    roots.add(root);
+                } else {
+                    roots.remove(roots.size() - 1);
+                    roots.add(root);
+                }
                 fragment.setRoot(root);
             }
             List<TreeEntry> entries = root.getTree();
 
-            if (flag == Flag.STAR_CONTENT_FIRST) {
+            if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
                 list.clear();
                 for (TreeEntry e : entries) {
                     String[] a = e.getPath().split("/");
@@ -127,8 +137,6 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
                     adapter.notifyDataSetChanged();
                     fragment.setContentShown(true);
                 }
-            } else if (flag == Flag.STAR_CONTENT_REFRESH) {
-                /* Do something */
             } else {
                 list.clear();
                 String[] a = entry.getPath().split("/");
@@ -154,6 +162,15 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
             fragment.setContentEmpty(true);
             fragment.setEmptyText(R.string.content_empty_error);
             fragment.setContentShown(true);
+
+            if (flag == Flag.STAR_CONTENT_REFRESH) {
+                SuperToast.create(
+                        context,
+                        context.getString(R.string.content_refresh_failed),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.RED)
+                ).show();
+            }
         }
     }
 }

@@ -46,6 +46,8 @@
     <string name="repo_empty_error">Get data failed.</string>
     <string name="repo_add_successful">Add Successful</string>
     <string name="repo_add_failed">Add Failed</string>
+    <string name="repo_refresh_successful">Refresh Successful</string>
+    <string name="repo_refresh_failed">Refresh Failed</string>
 
     <!-- Bookmark -->
     <string name="bookmark_label">Bookmark</string>
@@ -54,11 +56,15 @@
     <string name="bookmark_remove_successful">Remove Successful</string>
     <string name="bookmark_empty_list">Empty list.</string>
     <string name="bookmark_empty_error">Get data failed.</string>
+    <string name="bookmark_refresh_successful">Refresh Successful</string>
+    <string name="bookmark_refresh_failed">Refresh Failed</string>
 
     <!-- Star -->
     <string name="star_label">Star</string>
     <string name="star_item_overflow_commit">Commit</string>
     <string name="star_item_overflow_add">Add</string>
+    <string name="star_refresh_successful">Refresh Successful</string>
+    <string name="star_refresh_failed">Refresh Failed</string>
 
     <!-- Content -->
     <string name="content_item_icon">Icon</string>
@@ -67,6 +73,22 @@
     <string name="content_database_error">Open Database failed</string>
     <string name="content_empty_list">Empty list.</string>
     <string name="content_empty_error">Get data failed.</string>
+    <string name="content_refresh_successful">Refresh Successful</string>
+    <string name="content_refresh_failed">Refresh Failed</string>
+
+    <!-- Overflow -->
+    <string name="overflow_remove_successful">Remove Successful</string>
+    <string name="overflow_remove_failed">Remove Failed</string>
+    <string name="overflow_add_successful">Add successful</string>
+    <string name="overflow_add_failed">Add Failed</string>
+
+    <!-- Commit -->
+    <string name="commit_label">Commit</string>
+    <string name="commit_item_icon">Icon</string>
+    <string name="commit_empty_list">Empty list.</string>
+    <string name="commit_empty_error">Get data failed.</string>
+    <string name="commit_refresh_successful">Refresh Successful</string>
+    <string name="commit_refresh_failed">Refresh Failed</string>
 
     <!-- Other -->
     <string name="pull_to_refresh_pull_label">Pull to refresh</string>

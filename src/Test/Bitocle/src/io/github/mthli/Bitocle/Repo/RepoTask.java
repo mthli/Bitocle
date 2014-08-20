@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.SQLException;
 import android.os.AsyncTask;
 import android.widget.SimpleAdapter;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
 import io.github.mthli.Bitocle.Database.Repo.RAction;
 import io.github.mthli.Bitocle.Database.Repo.Repo;
 import io.github.mthli.Bitocle.Main.Flag;
@@ -24,8 +26,6 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
 
     private RepoItemAdapter adapter;
     private List<RepoItem> list;
-    private SimpleAdapter autoAdapter;
-    private List<Map<String, String>> autoList;
 
     private RepositoryService service;
 
@@ -40,20 +40,18 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
 
         adapter = fragment.getRepoItemAdapter();
         list = fragment.getRepoItemList();
-        autoAdapter = fragment.getAutoAdapter();
-        autoList = fragment.getAutoList();
 
         GitHubClient client = fragment.getClient();
         service = new RepositoryService(client);
 
-        if (flag == Flag.REPO_FIRST || flag == Flag.REPO_REFRESH) {
+        if (flag == Flag.REPO_FIRST) {
             fragment.setContentShown(false);
         }
     }
 
     @Override
     protected Boolean doInBackground(Void... params) {
-        if (flag == Flag.REPO_FIRST || flag == Flag.REPO_REFRESH) {
+        if (flag == Flag.REPO_FIRST) {
             RAction action = new RAction(context);
             try {
                 action.openDatabase(true);
@@ -62,18 +60,12 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
                 return false;
             }
 
-            List<Repository> repositories = new ArrayList<Repository>();
-            if (flag == Flag.REPO_FIRST) {
-                try {
-                    repositories = service.getRepositories();
-                } catch (IOException i) {
-                    action.closeDatabase();
-                    return false;
-                }
-            }
-
-            if (flag == Flag.REPO_REFRESH) {
-                /* Do something */
+            List<Repository> repositories;
+            try {
+                repositories = service.getRepositories();
+            } catch (IOException i) {
+                action.closeDatabase();
+                return false;
             }
 
             if (isCancelled()) {
@@ -98,16 +90,6 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
                     }
                 }
             }
-
-            if (flag == Flag.REPO_REFRESH) {
-                /* Do something */
-            }
-
-            if (isCancelled()) {
-                action.closeDatabase();
-                return false;
-            }
-
             action.closeDatabase();
         }
 
@@ -143,46 +125,71 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
             List<Repo> repos = action.listRepos();
             Collections.sort(repos);
 
-            if (flag == Flag.REPO_FIRST || flag == Flag.REPO_SECOND) {
-                list.clear();
-                autoList.clear();
-                for (Repo r : repos) {
-                    list.add(
-                            new RepoItem(
-                                    r.getName(),
-                                    r.getDate(),
-                                    r.getDescription(),
-                                    r.getLang(),
-                                    r.getStar(),
-                                    r.getFork(),
-                                    r.getOwner(),
-                                    r.getGit()
-                            )
-                    );
-                    Map<String, String> map = new HashMap<String, String>();
-                    map.put("owner", r.getOwner());
-                    map.put("name", r.getName());
-                    autoList.add(map);
-                }
+            List<Map<String, String>> autoList = new ArrayList<Map<String, String>>();
 
-                if (list.size() == 0) {
-                    fragment.setContentEmpty(true);
-                    fragment.setEmptyText(R.string.repo_empty_list);
-                    fragment.setContentShown(true);
-                } else {
-                    fragment.setContentEmpty(false);
-                    adapter.notifyDataSetChanged();
-                    autoAdapter.notifyDataSetChanged();
-                    fragment.setContentShown(true);
-                }
-            } else {
-                /* Do something */
+            list.clear();
+            autoList.clear();
+            for (Repo r : repos) {
+                list.add(
+                        new RepoItem(
+                                r.getName(),
+                                r.getDate(),
+                                r.getDescription(),
+                                r.getLang(),
+                                r.getStar(),
+                                r.getFork(),
+                                r.getOwner(),
+                                r.getGit()
+                        )
+                );
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("owner", r.getOwner());
+                map.put("name", r.getName());
+                autoList.add(map);
             }
             action.closeDatabase();
+
+            SimpleAdapter autoAdapter = new SimpleAdapter(
+                    context,
+                    autoList,
+                    R.layout.auto_item,
+                    new String[] {"owner", "name"},
+                    new int[] {R.id.auto_item_owner, R.id.auto_item_name}
+            );
+            autoAdapter.notifyDataSetChanged();
+            fragment.getSearch().setAdapter(autoAdapter);
+
+            if (list.size() == 0) {
+                fragment.setContentEmpty(true);
+                fragment.setEmptyText(R.string.repo_empty_list);
+                fragment.setContentShown(true);
+            } else {
+                fragment.setContentEmpty(false);
+                adapter.notifyDataSetChanged();
+                fragment.setContentShown(true);
+            }
+
+            if (flag == Flag.REPO_REFRESH) {
+                SuperToast.create(
+                        context,
+                        context.getString(R.string.repo_refresh_successful),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.BLUE)
+                ).show();
+            }
         } else {
             fragment.setContentEmpty(true);
             fragment.setEmptyText(R.string.repo_empty_error);
             fragment.setContentShown(true);
+
+            if (flag == Flag.REPO_REFRESH) {
+                SuperToast.create(
+                        context,
+                        context.getString(R.string.repo_refresh_failed),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.RED)
+                ).show();
+            }
         }
     }
 }

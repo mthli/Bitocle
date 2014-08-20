@@ -18,10 +18,7 @@ import uk.co.senab.actionbarpulltorefresh.library.PullToRefreshLayout;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class AddTask extends AsyncTask<Void, Integer, Boolean> {
     private MainFragment fragment;
@@ -35,8 +32,6 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
     private ListView listView;
     private RepoItemAdapter adapter;
     private List<RepoItem> list;
-    private SimpleAdapter autoAdapter;
-    private List<Map<String, String>> autoList;
 
     private String git;
 
@@ -57,8 +52,6 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
         listView = fragment.getListView();
         adapter = fragment.getRepoItemAdapter();
         list = fragment.getRepoItemList();
-        autoAdapter = fragment.getAutoAdapter();
-        autoList = fragment.getAutoList();
 
         pull.setRefreshing(true);
     }
@@ -137,7 +130,7 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
                 SuperToast.create(
                         fragment.getActivity(),
                         context.getString(R.string.repo_add_failed),
-                        SuperToast.Duration.SHORT,
+                        SuperToast.Duration.VERY_SHORT,
                         Style.getStyle(Style.RED)
                 ).show();
 
@@ -146,6 +139,9 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
 
             List<Repo> repos = action.listRepos();
             Collections.sort(repos);
+
+            List<Map<String, String>> autoList = new ArrayList<Map<String, String>>();
+
             list.clear();
             autoList.clear();
             for (Repo r : repos) {
@@ -166,30 +162,46 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
                 map.put("name", r.getName());
                 autoList.add(map);
             }
-
-            int position = 0;
-            for (RepoItem r : list) {
-                if (r.getGit().equals(git)) {
-                    break;
-                }
-                position++;
-            }
-            adapter.notifyDataSetChanged();
-            autoAdapter.notifyDataSetChanged();
-            listView.smoothScrollToPosition(position);
-
             action.closeDatabase();
-            SuperToast.create(
-                    fragment.getActivity(),
-                    context.getString(R.string.repo_add_successful),
-                    SuperToast.Duration.SHORT,
-                    Style.getStyle(Style.BLUE)
-            ).show();
+
+            SimpleAdapter autoAdapter = new SimpleAdapter(
+                    context,
+                    autoList,
+                    R.layout.auto_item,
+                    new String[] {"owner", "name"},
+                    new int[] {R.id.auto_item_owner, R.id.auto_item_name}
+            );
+            autoAdapter.notifyDataSetChanged();
+            fragment.getSearch().setAdapter(autoAdapter);
+
+            if (list.size() == 0) {
+                fragment.setContentEmpty(true);
+                fragment.setEmptyText(R.string.repo_empty_list);
+                fragment.setContentShown(true);
+            } else {
+                int position = 0;
+                for (RepoItem r : list) {
+                    if (r.getGit().equals(git)) {
+                        break;
+                    }
+                    position++;
+                }
+                fragment.setContentEmpty(false);
+                adapter.notifyDataSetChanged();
+                fragment.setContentShown(true);
+                listView.smoothScrollToPosition(position);
+                SuperToast.create(
+                        fragment.getActivity(),
+                        context.getString(R.string.repo_add_successful),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.BLUE)
+                ).show();
+            }
         } else {
             SuperToast.create(
                     fragment.getActivity(),
                     context.getString(R.string.repo_add_failed),
-                    SuperToast.Duration.SHORT,
+                    SuperToast.Duration.VERY_SHORT,
                     Style.getStyle(Style.RED)
             ).show();
         }

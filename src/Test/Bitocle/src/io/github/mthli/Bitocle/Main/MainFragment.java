@@ -20,6 +20,9 @@ import com.github.johnpersano.supertoasts.util.Style;
 import io.github.mthli.Bitocle.Bookmark.BookmarkItem;
 import io.github.mthli.Bitocle.Bookmark.BookmarkItemAdapter;
 import io.github.mthli.Bitocle.Bookmark.BookmarkTask;
+import io.github.mthli.Bitocle.Commit.CommitItem;
+import io.github.mthli.Bitocle.Commit.CommitItemAdapter;
+import io.github.mthli.Bitocle.Commit.CommitTask;
 import io.github.mthli.Bitocle.Content.ContentItem;
 import io.github.mthli.Bitocle.Content.ContentItemAdapter;
 import io.github.mthli.Bitocle.Content.RepoContentTask;
@@ -45,10 +48,12 @@ public class MainFragment extends ProgressFragment {
     public static final int BOOKMARK_ID = 2;
     public static final int REPO_CONTENT_ID = 3;
     public static final int STAR_CONTENT_ID = 4;
+    public static final int COMMIT_ID = 5;
 
     private int currentId = 0;
     private int flag = 0;
 
+    private View view;
     private ListView listView;
     private ActionBar actionBar;
     private PullToRefreshLayout pull;
@@ -66,9 +71,6 @@ public class MainFragment extends ProgressFragment {
     private RepoItemAdapter repoItemAdapter;
     private List<RepoItem> repoItemList = new ArrayList<RepoItem>();
 
-    private SimpleAdapter autoAdapter;
-    private List<Map<String, String>> autoList = new ArrayList<Map<String, String>>();
-
     private BookmarkItemAdapter bookmarkItemAdapter;
     private List<BookmarkItem> bookmarkItemList = new ArrayList<BookmarkItem>();
 
@@ -77,6 +79,9 @@ public class MainFragment extends ProgressFragment {
 
     private ContentItemAdapter contentItemAdapter;
     private List<ContentItem> contentItemList = new ArrayList<ContentItem>();
+
+    private CommitItemAdapter commitItemAdapter;
+    private List<CommitItem> commitItemList = new ArrayList<CommitItem>();
 
     private GitHubClient client;
     private String owner;
@@ -94,6 +99,7 @@ public class MainFragment extends ProgressFragment {
     private AddTask addTask;
     private RepoContentTask repoContentTask;
     private StarContentTask starContentTask;
+    private CommitTask commitTask;
 
     public int getCurrentId() {
         return currentId;
@@ -101,6 +107,9 @@ public class MainFragment extends ProgressFragment {
 
     public int getFlag() {
         return flag;
+    }
+    public void setFlag(int flag) {
+        this.flag = flag;
     }
 
     public ListView getListView() {
@@ -127,18 +136,15 @@ public class MainFragment extends ProgressFragment {
         this.logout = logout;
     }
 
+    public AutoCompleteTextView getSearch() {
+        return search;
+    }
+
     public RepoItemAdapter getRepoItemAdapter() {
         return repoItemAdapter;
     }
     public List<RepoItem> getRepoItemList() {
         return repoItemList;
-    }
-
-    public SimpleAdapter getAutoAdapter() {
-        return autoAdapter;
-    }
-    public List<Map<String, String>> getAutoList() {
-        return autoList;
     }
 
     public StarItemAdapter getStarItemAdapter() {
@@ -160,6 +166,13 @@ public class MainFragment extends ProgressFragment {
     }
     public List<ContentItem> getContentItemList() {
         return contentItemList;
+    }
+
+    public CommitItemAdapter getCommitItemAdapter() {
+        return commitItemAdapter;
+    }
+    public List<CommitItem> getCommitItemList() {
+        return commitItemList;
     }
 
     public GitHubClient getClient() {
@@ -197,7 +210,7 @@ public class MainFragment extends ProgressFragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setContentView(R.layout.main_fragment);
-        final View view = getContentView();
+        view = getContentView();
         setContentShown(true);
 
         listView = (ListView) view.findViewById(R.id.main_fragment_listview);
@@ -239,8 +252,15 @@ public class MainFragment extends ProgressFragment {
                 if (actionId == EditorInfo.IME_ACTION_SEND) {
                     String query = search.getText().toString();
                     if (query.length() > 0) {
-                        addTask = new AddTask(MainFragment.this, query);
-                        addTask.execute();
+                        if (addTask != null && addTask.getStatus() == AsyncTask.Status.FINISHED) {
+                            addTask = new AddTask(MainFragment.this, query);
+                            addTask.execute();
+                        } else if (addTask == null) {
+                            addTask = new AddTask(MainFragment.this, query);
+                            addTask.execute();
+                        } else {
+                            /* Do nothing */
+                        }
                     }
                 }
                 return false;
@@ -254,6 +274,7 @@ public class MainFragment extends ProgressFragment {
             }
         });
 
+        /*
         autoAdapter = new SimpleAdapter(
                 view.getContext(),
                 autoList,
@@ -263,6 +284,7 @@ public class MainFragment extends ProgressFragment {
         );
         autoAdapter.notifyDataSetChanged();
         search.setAdapter(autoAdapter);
+        */
 
         repoItemAdapter = new RepoItemAdapter(
                 MainFragment.this,
@@ -294,6 +316,13 @@ public class MainFragment extends ProgressFragment {
                 contentItemList
         );
         contentItemAdapter.notifyDataSetChanged();
+
+        commitItemAdapter = new CommitItemAdapter(
+                view.getContext(),
+                R.layout.commit_item,
+                commitItemList
+        );
+        commitItemAdapter.notifyDataSetChanged();
 
         SharedPreferences sp = getActivity().getSharedPreferences(
                 getString(R.string.login_sp),
@@ -435,7 +464,7 @@ public class MainFragment extends ProgressFragment {
             SuperToast.create(
                     context,
                     getString(R.string.content_database_error),
-                    SuperToast.Duration.SHORT,
+                    SuperToast.Duration.VERY_SHORT,
                     Style.getStyle(Style.RED)
             ).show();
             return false;
@@ -458,8 +487,12 @@ public class MainFragment extends ProgressFragment {
 
                             Map<String, String> map = buffer.get(buffer.size() - 1);
                             if (toggle) {
-                                String str = map.get("prefix"); ///
-                                b.setPath(str + "/" + e.getPath());
+                                String str = map.get("prefix");
+                                if (str.equals("/")) {
+                                    b.setPath(e.getPath());
+                                } else {
+                                    b.setPath(str + "/" + e.getPath());
+                                }
                             } else {
                                 b.setPath(e.getPath());
                             }
@@ -474,7 +507,7 @@ public class MainFragment extends ProgressFragment {
                 SuperToast.create(
                         context,
                         getString(R.string.content_add_successful),
-                        SuperToast.Duration.SHORT,
+                        SuperToast.Duration.VERY_SHORT,
                         Style.getStyle(Style.BLUE)
                 ).show();
                 break;
@@ -489,7 +522,7 @@ public class MainFragment extends ProgressFragment {
                 SuperToast.create(
                         context,
                         getString(R.string.bookmark_remove_successful),
-                        SuperToast.Duration.SHORT,
+                        SuperToast.Duration.VERY_SHORT,
                         Style.getStyle(Style.BLUE)
                 ).show();
                 bookmarkTask = new BookmarkTask(MainFragment.this);
@@ -755,6 +788,18 @@ public class MainFragment extends ProgressFragment {
         logout.setVisible(false);
     }
 
+    public void hideWhenCommit() {
+        imm.hideSoftInputFromWindow(search.getWindowToken(), 0);
+        search.setText("");
+        search.clearFocus();
+        search.setVisibility(View.GONE);
+        line.setVisibility(View.GONE);
+        star.setVisible(false);
+        bookmark.setVisible(false);
+        about.setVisible(false);
+        logout.setVisible(false);
+    }
+
     public void showWhenRepo() {
         search.setVisibility(View.VISIBLE);
         line.setVisibility(View.VISIBLE);
@@ -765,7 +810,7 @@ public class MainFragment extends ProgressFragment {
         logout.setVisible(true);
     }
 
-    public void changeToRepo() {
+    public void changeToRepo(int status) {
         allTaskDown();
 
         showWhenRepo();
@@ -785,7 +830,7 @@ public class MainFragment extends ProgressFragment {
 
         listView.setAdapter(repoItemAdapter);
         repoItemAdapter.notifyDataSetChanged();
-        flag = Flag.REPO_SECOND;
+        flag = status;
         currentId = REPO_ID;
         repoTask = new RepoTask(MainFragment.this);
         repoTask.execute();
@@ -793,7 +838,6 @@ public class MainFragment extends ProgressFragment {
 
     public void changeToBookmark() {
         allTaskDown();
-
         hideWhenBookmark();
         setContentEmpty(false);
         setContentShown(true);
@@ -811,10 +855,15 @@ public class MainFragment extends ProgressFragment {
         bookmarkTask.execute();
     }
 
-    public void changeToStar(boolean first) {
-        allTaskDown();
+    private int location;
 
-        hideWhenStar();
+    public void setLocation(int location) {
+        this.location = location;
+    }
+
+    public void changeToCommit(int status) {
+        allTaskDown();
+        hideWhenCommit();
         setContentEmpty(false);
         setContentShown(true);
 
@@ -824,14 +873,55 @@ public class MainFragment extends ProgressFragment {
         buffer.clear();
         toggle = false;
 
+        listView.setAdapter(commitItemAdapter);
+        contentItemAdapter.notifyDataSetChanged();
+        if (currentId == REPO_ID) {
+            RepoItem repoItem = repoItemList.get(location);
+            actionBar.setTitle(repoItem.getName());
+            flag = status;
+            commitTask = new CommitTask(
+                    MainFragment.this,
+                    repoItem,
+                    null
+            );
+            commitTask.execute();
+        } else {
+            StarItem starItem = starItemList.get(location);
+            actionBar.setTitle(starItem.getName());
+            flag = status;
+            commitTask = new CommitTask(
+                    MainFragment.this,
+                    null,
+                    starItem
+            );
+            commitTask.execute();
+        }
+        actionBar.setSubtitle(R.string.commit_label);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        currentId = COMMIT_ID;
+    }
+
+    public void changeToStar(boolean isFirst) {
+        allTaskDown();
+
+        hideWhenStar();
+        setContentEmpty(false);
+        setContentShown(true);
+
         actionBar.setTitle(R.string.star_label);
         actionBar.setSubtitle(null);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        entry = null;
+        root = null;
+        roots.clear();
+        buffer.clear();
+        toggle = false;
+
         listView.setAdapter(starItemAdapter);
         starItemAdapter.notifyDataSetChanged();
         currentId = MainFragment.STAR_ID;
-        if (first) {
+        if (isFirst) {
             flag = Flag.STAR_FIRST;
             starTask = new StarTask(MainFragment.this);
             starTask.execute();
@@ -847,7 +937,7 @@ public class MainFragment extends ProgressFragment {
             case Flag.REPO_FIRST:
             case Flag.REPO_SECOND:
             case Flag.REPO_REFRESH:
-                changeToRepo();
+                changeToRepo(Flag.REPO_SECOND);
                 break;
             case Flag.REPO_CONTENT_FIRST:
             case Flag.REPO_CONTENT_SECOND:
@@ -883,6 +973,23 @@ public class MainFragment extends ProgressFragment {
                 currentId = STAR_CONTENT_ID;
                 listView.setAdapter(contentItemAdapter);
                 contentItemAdapter.notifyDataSetChanged();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void backFromCommit() {
+        allTaskDown();
+
+        switch (flag) {
+            case Flag.REPO_COMMIT_FIRST:
+            case Flag.REPO_COMMIT_REFRESH:
+                changeToRepo(Flag.REPO_SECOND);
+                break;
+            case Flag.STAR_COMMIT_FIRST:
+            case Flag.STAR_COMMIT_REFRESH:
+                changeToStar(false);
                 break;
             default:
                 break;
@@ -968,7 +1075,7 @@ public class MainFragment extends ProgressFragment {
                 case Flag.REPO_CONTENT_FIRST:
                 case Flag.REPO_CONTENT_SECOND:
                 case Flag.REPO_CONTENT_REFRESH:
-                    changeToRepo();
+                    changeToRepo(Flag.REPO_SECOND);
                     break;
                 case Flag.STAR_CONTENT_FIRST:
                 case Flag.STAR_CONTENT_SECOND:
@@ -979,9 +1086,13 @@ public class MainFragment extends ProgressFragment {
                     break;
             }
         } else {
-            roots.remove(roots.size() - 1);
             buffer.remove(buffer.size() - 1);
-            root = roots.get(roots.size() - 1);
+            try {
+                root = roots.get(roots.size() - 2);
+                roots.remove(roots.size() - 1);
+            } catch (ArrayIndexOutOfBoundsException a) {
+                root = roots.get(roots.size() - 1);
+            }
             Map<String, String> map = buffer.get(buffer.size() - 1);
 
             String prefix = map.get("prefix");
@@ -1042,7 +1153,6 @@ public class MainFragment extends ProgressFragment {
         }
     }
 
-    /* Do something */
     public void allTaskDown() {
         if (repoTask != null && repoTask.getStatus() == AsyncTask.Status.RUNNING) {
             repoTask.cancel(true);
@@ -1062,6 +1172,88 @@ public class MainFragment extends ProgressFragment {
         if (starContentTask != null && starContentTask.getStatus() == AsyncTask.Status.RUNNING) {
             starContentTask.cancel(true);
         }
-        /* Do something */
+        if (commitTask != null && commitTask.getStatus() == AsyncTask.Status.RUNNING) {
+            commitTask.cancel(true);
+        }
+    }
+
+    public void refreshAction() {
+        switch (currentId) {
+            case REPO_ID:
+                if (repoTask != null && repoTask.getStatus() == AsyncTask.Status.FINISHED) {
+                    if (flag == Flag.REPO_FIRST) {
+                        if (isContentEmpty()) {
+                            changeToRepo(Flag.REPO_FIRST);
+                        }
+                    } else {
+                        changeToRepo(Flag.REPO_REFRESH);
+                    }
+                }
+                break;
+            case STAR_ID:
+                if (starTask != null && starTask.getStatus() == AsyncTask.Status.FINISHED) {
+                    changeToStar(true);
+                }
+                break;
+            case BOOKMARK_ID:
+                changeToBookmark();
+                SuperToast.create(
+                        view.getContext(),
+                        view.getContext().getString(R.string.bookmark_refresh_successful),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.BLUE)
+                ).show();
+                break;
+            case REPO_CONTENT_ID:
+                if (repoContentTask != null && repoContentTask.getStatus() == AsyncTask.Status.FINISHED) {
+                    if (entry == null) {
+                        flag = Flag.REPO_CONTENT_REFRESH;
+                        repoContentTask = new RepoContentTask(MainFragment.this);
+                        repoContentTask.execute();
+                    } else {
+                        SuperToast.create(
+                                view.getContext(),
+                                view.getContext().getString(R.string.content_refresh_successful),
+                                SuperToast.Duration.VERY_SHORT,
+                                Style.getStyle(Style.BLUE)
+                        ).show();
+                    }
+                }
+                break;
+            case STAR_CONTENT_ID:
+                if (starContentTask != null && starContentTask.getStatus() == AsyncTask.Status.FINISHED) {
+                    if (entry == null) {
+                        flag = Flag.STAR_CONTENT_REFRESH;
+                        starContentTask = new StarContentTask(MainFragment.this);
+                        starContentTask.execute();
+                    } else {
+                        SuperToast.create(
+                                view.getContext(),
+                                view.getContext().getString(R.string.content_refresh_successful),
+                                SuperToast.Duration.VERY_SHORT,
+                                Style.getStyle(Style.BLUE)
+                        ).show();
+                    }
+                }
+                break;
+            case COMMIT_ID:
+                if (commitTask != null && commitTask.getStatus() == AsyncTask.Status.FINISHED) {
+                    switch (flag) {
+                        case Flag.REPO_COMMIT_FIRST:
+                        case Flag.REPO_COMMIT_REFRESH:
+                            changeToCommit(Flag.REPO_COMMIT_REFRESH);
+                            break;
+                        case Flag.STAR_COMMIT_FIRST:
+                        case Flag.STAR_COMMIT_REFRESH:
+                            changeToCommit(Flag.STAR_COMMIT_REFRESH);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -16,4 +16,9 @@ public class Flag {
     public static final int STAR_CONTENT_FIRST = 0x400;
     public static final int STAR_CONTENT_SECOND = 0x401;
     public static final int STAR_CONTENT_REFRESH = 0x402;
+
+    public static final int REPO_COMMIT_FIRST = 0x500;
+    public static final int REPO_COMMIT_REFRESH = 0x501;
+    public static final int STAR_COMMIT_FIRST = 0x502;
+    public static final int STAR_COMMIT_REFRESH = 0x503;
 }

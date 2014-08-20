@@ -71,9 +71,13 @@ public class ContentItemAdapter extends ArrayAdapter<ContentItem> {
             holder.icon.setImageDrawable(
                     context.getResources().getDrawable(R.drawable.ic_type_file)
             );
-            double r = round(item.getEntry().getSize() / 1024);
-            String size = r + " " + "KB";
-            holder.info.setText(size);
+            if (item.getEntry().getSize() < 1024) {
+                holder.info.setText(item.getEntry().getSize() + " " + "B");
+            } else {
+                double r = round(item.getEntry().getSize() / 1024);
+                String size = r + " " + "KB";
+                holder.info.setText(size);
+            }
         }
         holder.title.setText(getName(item.getEntry().getPath()));
 
