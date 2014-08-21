@@ -56,6 +56,7 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
         entry = fragment.getEntry();
 
         if (flag == Flag.REPO_CONTENT_FIRST || flag == Flag.REPO_CONTENT_REFRESH) {
+            fragment.setContentEmpty(false);
             fragment.setContentShown(false);
             bookmark.setVisible(false);
         }
@@ -99,10 +100,7 @@ public class RepoContentTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        if (flag == Flag.REPO_CONTENT_FIRST || flag == Flag.REPO_CONTENT_REFRESH) {
-            fragment.setContentShown(true);
-            bookmark.setVisible(true);
-        }
+        /* Do nothing */
     }
 
     @Override

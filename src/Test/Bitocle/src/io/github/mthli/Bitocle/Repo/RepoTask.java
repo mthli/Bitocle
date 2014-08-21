@@ -45,6 +45,7 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
         service = new RepositoryService(client);
 
         if (flag == Flag.REPO_FIRST) {
+            fragment.setContentEmpty(false);
             fragment.setContentShown(false);
         }
     }
@@ -101,9 +102,7 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        if (flag == Flag.REPO_FIRST) {
-            fragment.setContentShown(true);
-        }
+        /* Do nothing */
     }
 
     @Override

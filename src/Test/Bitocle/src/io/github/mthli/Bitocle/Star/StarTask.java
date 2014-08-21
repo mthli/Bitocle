@@ -37,6 +37,7 @@ public class StarTask extends AsyncTask<Void, Integer, Boolean> {
         GitHubClient client = fragment.getClient();
         service = new WatcherService(client);
 
+        fragment.setContentEmpty(false);
         fragment.setContentShown(false);
         bookmark.setVisible(false);
     }
@@ -54,8 +55,7 @@ public class StarTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        fragment.setContentShown(true);
-        bookmark.setVisible(true);
+        /* Do nothing */
     }
 
     @Override

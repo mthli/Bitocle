@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.view.*;
 import android.widget.AutoCompleteTextView;
 import io.github.mthli.Bitocle.R;
@@ -94,7 +95,11 @@ public class MainActivity extends FragmentActivity {
             switch (fragment.getCurrentId()) {
                 case MainFragment.REPO_ID:
                     fragment.allTaskDown();
+                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                    transaction.remove(fragment);
+                    transaction.commit();
                     finish();
+                    System.exit(0);
                     break;
                 case MainFragment.STAR_ID:
                     fragment.changeToRepo(Flag.REPO_SECOND);

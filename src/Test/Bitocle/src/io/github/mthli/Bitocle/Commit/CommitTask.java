@@ -72,7 +72,7 @@ public class CommitTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        fragment.setContentShown(true);
+        /* Do nothing */
     }
 
     @Override

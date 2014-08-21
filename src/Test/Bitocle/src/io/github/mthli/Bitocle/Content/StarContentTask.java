@@ -55,6 +55,7 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
         entry = fragment.getEntry();
 
         if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
+            fragment.setContentEmpty(false);
             fragment.setContentShown(false);
             bookmark.setVisible(false);
         }
@@ -98,10 +99,7 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
 
     @Override
     protected void onCancelled() {
-        if (flag == Flag.STAR_CONTENT_FIRST || flag == Flag.STAR_CONTENT_REFRESH) {
-            fragment.setContentShown(true);
-            bookmark.setVisible(true);
-        }
+        /* Do nothing */
     }
 
     @Override
