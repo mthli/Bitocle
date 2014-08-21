@@ -1,8 +1,31 @@
-/*
+pre {
+    position: relative;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+    border-radius: 3px;
+    background: #FFF;
+    overflow: hidden;
+}
 
-Sunburst-like style (c) Vasily Polovnyov <vast@whiteants.net>
+code.has-numbering {
+    padding-left: 40px
+}
 
-*/
+.pre-numbering {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    padding: 0.5em 2px;
+    background-color: #000;
+    text-align: right;
+    -webkit-text-size-adjust: none;
+    color: #aeaeae;
+}
+
+/* ------------------------------------ */
 
 .hljs {
   display: block;

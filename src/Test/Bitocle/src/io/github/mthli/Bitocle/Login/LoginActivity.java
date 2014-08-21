@@ -144,7 +144,7 @@ public class LoginActivity extends Activity {
                 editor.putString(getString(R.string.login_sp_username), username);
                 editor.putString(getString(R.string.login_sp_oauth), authorization.getToken());
                 editor.putInt(getString(R.string.login_sp_highlight_num), 0);
-                editor.putString(getString(R.string.login_sp_highlight_css), "github.css");
+                editor.putString(getString(R.string.login_sp_highlight_css), getString(R.string.webview_default_css));
                 editor.commit();
                 progressDialog.dismiss();
 

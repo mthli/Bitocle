@@ -164,15 +164,6 @@ public class StarContentTask extends AsyncTask<Void, Integer, Boolean> {
             fragment.setContentEmpty(true);
             fragment.setEmptyText(R.string.content_empty_error);
             fragment.setContentShown(true);
-
-            if (flag == Flag.STAR_CONTENT_REFRESH) {
-                SuperToast.create(
-                        context,
-                        context.getString(R.string.content_refresh_failed),
-                        SuperToast.Duration.VERY_SHORT,
-                        Style.getStyle(Style.RED)
-                ).show();
-            }
         }
     }
 }

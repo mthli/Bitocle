@@ -26,4 +26,11 @@
     <color name="dark_gray">#333333</color>
     <color name="light_gray">#AFFFFFFF</color>
 
+    <!-- WebView Background -->
+    <color name="github">#f8f8f8</color>
+    <color name="monokai">#272822</color>
+    <color name="solarized">#002b36</color>
+    <color name="sunburst">#000000</color>
+    <color name="tomorrow">#ffffff</color>
+
 </resources>

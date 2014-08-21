@@ -29,5 +29,10 @@
                   android:configChanges="orientation|keyboardHidden|screenSize">
         </activity>
 
+        <activity android:name=".WebView.WebViewActivity"
+                  android:label="@string/webview_label"
+                  android:configChanges="orientation|keyboardHidden|screenSize">
+        </activity>
+
     </application>
 </manifest>

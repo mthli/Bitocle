@@ -34,6 +34,8 @@ import io.github.mthli.Bitocle.Repo.*;
 import io.github.mthli.Bitocle.Star.StarItem;
 import io.github.mthli.Bitocle.Star.StarItemAdapter;
 import io.github.mthli.Bitocle.Star.StarTask;
+import io.github.mthli.Bitocle.WebView.MimeType;
+import io.github.mthli.Bitocle.WebView.WebViewActivity;
 import org.eclipse.egit.github.core.Tree;
 import org.eclipse.egit.github.core.TreeEntry;
 import org.eclipse.egit.github.core.client.GitHubClient;
@@ -213,6 +215,7 @@ public class MainFragment extends ProgressFragment {
         super.onActivityCreated(savedInstanceState);
         setContentView(R.layout.main_fragment);
         view = getContentView();
+        setContentEmpty(false);
         setContentShown(true);
 
         listView = (ListView) view.findViewById(R.id.main_fragment_listview);
@@ -624,7 +627,23 @@ public class MainFragment extends ProgressFragment {
                     break;
             }
         } else {
-
+            if (MimeType.isUnSupport(bookmarkItem.getTitle())) {
+                SuperToast.create(
+                        view.getContext(),
+                        getString(R.string.webview_unsupport),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.RED)
+                ).show();
+            } else {
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(getString(R.string.webview_intent_title), bookmarkItem.getTitle());
+                String sub = bookmarkItem.getName() + "/" + bookmarkItem.getPath();
+                intent.putExtra(getString(R.string.webview_intent_subtitle), sub);
+                intent.putExtra(getString(R.string.webview_intent_owner), bookmarkItem.getOwner());
+                intent.putExtra(getString(R.string.webview_intent_name), bookmarkItem.getName());
+                intent.putExtra(getString(R.string.webview_intent_sha), bookmarkItem.getSha());
+                startActivity(intent);
+            }
         }
     }
 
@@ -666,7 +685,36 @@ public class MainFragment extends ProgressFragment {
             repoContentTask = new RepoContentTask(MainFragment.this);
             repoContentTask.execute();
         } else {
-            /* Do something */
+            TreeEntry e = item.getEntry();
+            String[] a = e.getPath().split("/");
+            String t = a[a.length - 1];
+
+            if (MimeType.isUnSupport(t)) {
+                SuperToast.create(
+                        view.getContext(),
+                        getString(R.string.webview_unsupport),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.RED)
+                ).show();
+            } else {
+                String s;
+                if (toggle) {
+                    if (prefix.equals("/")) {
+                        s = name + "/" + e.getPath();
+                    } else {
+                        s = name + "/" + prefix + "/" + e.getPath();
+                    }
+                } else {
+                    s = name + "/" + e.getPath();
+                }
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(getString(R.string.webview_intent_title), t);
+                intent.putExtra(getString(R.string.webview_intent_subtitle), s);
+                intent.putExtra(getString(R.string.webview_intent_owner), owner);
+                intent.putExtra(getString(R.string.webview_intent_name), name);
+                intent.putExtra(getString(R.string.webview_intent_sha), item.getEntry().getSha());
+                startActivity(intent);
+            }
         }
     }
 
@@ -704,7 +752,36 @@ public class MainFragment extends ProgressFragment {
             starContentTask = new StarContentTask(MainFragment.this);
             starContentTask.execute();
         } else {
-            /* Do something */
+            TreeEntry e = item.getEntry();
+            String[] a = e.getPath().split("/");
+            String t = a[a.length - 1];
+
+            if (MimeType.isUnSupport(t)) {
+                SuperToast.create(
+                        view.getContext(),
+                        getString(R.string.webview_unsupport),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.RED)
+                ).show();
+            } else {
+                String s;
+                if (toggle) {
+                    if (prefix.equals("/")) {
+                        s = name + "/" + e.getPath();
+                    } else {
+                        s = name + "/" + prefix + "/" + e.getPath();
+                    }
+                } else {
+                    s = name + "/" + e.getPath();
+                }
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                intent.putExtra(getString(R.string.webview_intent_title), t);
+                intent.putExtra(getString(R.string.webview_intent_subtitle), s);
+                intent.putExtra(getString(R.string.webview_intent_owner), owner);
+                intent.putExtra(getString(R.string.webview_intent_name), name);
+                intent.putExtra(getString(R.string.webview_intent_sha), item.getEntry().getSha());
+                startActivity(intent);
+            }
         }
     }
 

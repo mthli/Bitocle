@@ -182,15 +182,6 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
             fragment.setContentEmpty(true);
             fragment.setEmptyText(R.string.repo_empty_error);
             fragment.setContentShown(true);
-
-            if (flag == Flag.REPO_REFRESH) {
-                SuperToast.create(
-                        context,
-                        context.getString(R.string.repo_refresh_failed),
-                        SuperToast.Duration.VERY_SHORT,
-                        Style.getStyle(Style.RED)
-                ).show();
-            }
         }
     }
 }

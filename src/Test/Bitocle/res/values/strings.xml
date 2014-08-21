@@ -100,6 +100,21 @@
     <string name="commit_refresh_successful">Refresh Successful</string>
     <string name="commit_refresh_failed">Refresh Failed</string>
 
+    <!--WebView -->
+    <string name="webview_label">WebView</string>
+    <string name="webview_menu_refresh">Refresh</string>
+    <string name="webview_menu_highlight">Highlight</string>
+    <string name="webview_intent_title">Title</string>
+    <string name="webview_intent_subtitle">SubTitle</string>
+    <string name="webview_intent_owner">Owner</string>
+    <string name="webview_intent_name">Name</string>
+    <string name="webview_intent_sha">Sha</string>
+    <string name="webview_encoding">UTF-8</string>
+    <string name="webview_unsupport">UnSupport</string>
+    <string name="webview_default_css">github</string>
+    <string name="webview_wait">Wait a Moment</string>
+    <string name="webview_empty_error">Get data failed.</string>
+
     <!-- Other -->
     <string name="pull_to_refresh_pull_label">Pull to refresh</string>
     <string name="pull_to_refresh_release_label">Release to refresh</string>
