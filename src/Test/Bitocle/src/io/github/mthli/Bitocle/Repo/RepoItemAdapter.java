@@ -16,7 +16,10 @@ import io.github.mthli.Bitocle.Main.Flag;
 import io.github.mthli.Bitocle.Main.MainFragment;
 import io.github.mthli.Bitocle.R;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RepoItemAdapter extends ArrayAdapter<RepoItem> {
     private MainFragment fragment;
@@ -145,18 +148,41 @@ public class RepoItemAdapter extends ArrayAdapter<RepoItem> {
                         rAction.closeDatabase();
                         bAction.closeDatabase();
 
-                        fragment.changeToRepo(Flag.REPO_SECOND);
+                        list.remove(position);
 
-                        if (position > 0) {
-                            fragment.getListView().setSelection(position - 1);
+                        List<Map<String, String>> autoList = new ArrayList<Map<String, String>>();
+                        autoList.clear();
+                        for (RepoItem r : list) {
+                            Map<String, String> map = new HashMap<String, String>();
+                            map.put("owner", r.getOwner());
+                            map.put("name", r.getName());
+                            autoList.add(map);
                         }
-
-                        SuperToast.create(
+                        SimpleAdapter autoAdapter = new SimpleAdapter(
                                 context,
-                                context.getString(R.string.overflow_remove_successful),
-                                SuperToast.Duration.VERY_SHORT,
-                                Style.getStyle(Style.BLUE)
-                        ).show();
+                                autoList,
+                                R.layout.auto_item,
+                                new String[] {"owner", "name"},
+                                new int[] {R.id.auto_item_owner, R.id.auto_item_name}
+                        );
+                        autoAdapter.notifyDataSetChanged();
+                        fragment.getSearch().setAdapter(autoAdapter);
+
+                        if (list.size() <= 0) {
+                            fragment.setContentEmpty(true);
+                            fragment.setEmptyText(R.string.repo_empty_list);
+                            fragment.setContentShown(true);
+                        } else {
+                            fragment.setContentEmpty(false);
+                            fragment.getRepoItemAdapter().notifyDataSetChanged();
+                            fragment.setContentShown(true);
+                            SuperToast.create(
+                                    context,
+                                    context.getString(R.string.overflow_remove_successful),
+                                    SuperToast.Duration.VERY_SHORT,
+                                    Style.getStyle(Style.BLUE)
+                            ).show();
+                        }
                         break;
                     default:
                         break;

@@ -38,8 +38,6 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        // getActionBar().setIcon(R.drawable.ic_launcher_black);
-
         /*
          * 检测用户登陆状态
          *
@@ -144,8 +142,9 @@ public class LoginActivity extends Activity {
                 /* 将获取到的认真信息写入SharedPreferences */
                 editor = sharedPreferences.edit();
                 editor.putString(getString(R.string.login_sp_username), username);
-                editor.commit();
                 editor.putString(getString(R.string.login_sp_oauth), authorization.getToken());
+                editor.putInt(getString(R.string.login_sp_highlight_num), 0);
+                editor.putString(getString(R.string.login_sp_highlight_css), "github.css");
                 editor.commit();
                 progressDialog.dismiss();
 

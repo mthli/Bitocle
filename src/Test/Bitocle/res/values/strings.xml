@@ -10,6 +10,8 @@
     <string name="login_sp">OAuthFile</string>
     <string name="login_sp_oauth">OAuth</string>
     <string name="login_sp_username">Username</string>
+    <string name="login_sp_highlight_num">Num</string>
+    <string name="login_sp_highlight_css">CSS</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_button">Login</string>
@@ -29,9 +31,17 @@
     <string name="main_menu_star">Star</string>
     <string name="main_menu_bookmark">Bookmark</string>
     <string name="main_menu_refresh">Refresh</string>
-    <string name="main_menu_theme">Theme</string>
+    <string name="main_menu_highlight">Highlight</string>
     <string name="main_menu_about">About</string>
     <string name="main_menu_logout">Logout</string>
+    <string-array name="dialog_highlight_list">
+        <item>GitHub</item>
+        <item>Monokai</item>
+        <item>Solarized</item>
+        <item>Sunburst</item>
+        <item>Tomorrow</item>
+    </string-array>
+    <string name="main_logout_failed">Logout Failed</string>
 
     <!-- Repo -->
     <string name="repo_item_icon">Icon</string>

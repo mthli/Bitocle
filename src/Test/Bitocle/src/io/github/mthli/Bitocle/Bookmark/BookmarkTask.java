@@ -80,7 +80,7 @@ public class BookmarkTask extends AsyncTask<Void, Integer, Boolean> {
                         )
                 );
             }
-            if (list.size() == 0) {
+            if (list.size() <= 0) {
                 fragment.setContentEmpty(true);
                 fragment.setEmptyText(R.string.bookmark_empty_list);
                 fragment.setContentShown(true);

@@ -96,7 +96,7 @@ public class CommitTask extends AsyncTask<Void, Integer, Boolean> {
                 );
             }
 
-            if (list.size() == 0) {
+            if (list.size() <= 0) {
                 fragment.setContentEmpty(true);
                 fragment.setEmptyText(R.string.commit_empty_list);
                 fragment.setContentShown(true);

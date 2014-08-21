@@ -825,7 +825,7 @@ public class MainFragment extends ProgressFragment {
 
         listView.setAdapter(commitItemAdapter);
         contentItemAdapter.notifyDataSetChanged();
-        if (currentId == REPO_ID) {
+        if (currentId == REPO_ID || flag == Flag.REPO_COMMIT_FIRST || flag == Flag.REPO_COMMIT_REFRESH) { //
             RepoItem repoItem = repoItemList.get(location);
             actionBar.setTitle(repoItem.getName());
             flag = status;

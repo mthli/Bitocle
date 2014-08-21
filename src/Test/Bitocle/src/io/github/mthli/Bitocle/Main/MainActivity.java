@@ -1,12 +1,22 @@
 package io.github.mthli.Bitocle.Main;
 
 import android.app.ActionBar;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.database.SQLException;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.*;
 import android.widget.AutoCompleteTextView;
+import com.github.johnpersano.supertoasts.SuperToast;
+import com.github.johnpersano.supertoasts.util.Style;
+import io.github.mthli.Bitocle.Database.Bookmark.BAction;
+import io.github.mthli.Bitocle.Database.Repo.RAction;
+import io.github.mthli.Bitocle.Login.LoginActivity;
 import io.github.mthli.Bitocle.R;
 
 public class MainActivity extends FragmentActivity {
@@ -73,14 +83,14 @@ public class MainActivity extends FragmentActivity {
             case R.id.main_menu_refresh:
                 fragment.refreshAction();
                 break;
-            case R.id.main_menu_theme:
-                /* Do something */
+            case R.id.main_menu_highlight:
+                showHighlightDialog();
                 break;
             case R.id.main_menu_about:
                 /* Do something */
                 break;
             case R.id.main_menu_logout:
-                /* Do something */
+                logoutAction();
                 break;
             default:
                 break;
@@ -134,5 +144,70 @@ public class MainActivity extends FragmentActivity {
         else{
             /* Do nothing */
         }
+    }
+
+    private void showHighlightDialog() {
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.login_sp), MODE_PRIVATE);
+        final SharedPreferences.Editor editor = preferences.edit();
+
+        AlertDialog dialog;
+        int num = preferences.getInt(getString(R.string.login_sp_highlight_num), 0);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this)
+                .setSingleChoiceItems(
+                        R.array.dialog_highlight_list,
+                        num,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                editor.putInt(getString(R.string.login_sp_highlight_num), which);
+                                String str = getResources().getStringArray(R.array.dialog_highlight_list)[which];
+                                str = str.toLowerCase() + ".css";
+                                editor.putString(getString(R.string.login_sp_highlight_css), str);
+                                editor.commit();
+                                dialog.dismiss();
+                            }
+                        }
+                );
+        dialog = builder.create();
+        dialog.show();
+    }
+
+    private void logoutAction() {
+        RAction rAction = new RAction(MainActivity.this);
+        BAction bAction = new BAction(MainActivity.this);
+
+        try {
+            rAction.openDatabase(true);
+            bAction.openDatabase(true);
+
+            rAction.deleteAll();
+            bAction.unMarkAll();
+
+            rAction.closeDatabase();
+            bAction.closeDatabase();
+        } catch (SQLException s) {
+            rAction.closeDatabase();
+            bAction.closeDatabase();
+
+            SuperToast.create(
+                    MainActivity.this,
+                    getString(R.string.main_logout_failed),
+                    SuperToast.Duration.VERY_SHORT,
+                    Style.getStyle(Style.RED)
+            ).show();
+        }
+
+        SharedPreferences preferences = getSharedPreferences(getString(R.string.login_sp), MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove(getString(R.string.login_sp_oauth));
+        editor.remove(getString(R.string.login_sp_username));
+        editor.remove(getString(R.string.login_sp_highlight_num));
+        editor.remove(getString(R.string.login_sp_highlight_css));
+        editor.commit();
+
+        fragment.allTaskDown();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        MainActivity.this.finish();
     }
 }

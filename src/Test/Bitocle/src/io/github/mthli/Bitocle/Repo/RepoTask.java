@@ -160,7 +160,7 @@ public class RepoTask extends AsyncTask<Void, Integer, Boolean> {
             autoAdapter.notifyDataSetChanged();
             fragment.getSearch().setAdapter(autoAdapter);
 
-            if (list.size() == 0) {
+            if (list.size() <= 0) {
                 fragment.setContentEmpty(true);
                 fragment.setEmptyText(R.string.repo_empty_list);
                 fragment.setContentShown(true);

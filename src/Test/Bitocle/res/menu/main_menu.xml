@@ -19,8 +19,8 @@
           android:showAsAction="collapseActionView">
     </item>
 
-    <item android:id="@+id/main_menu_theme"
-          android:title="@string/main_menu_theme"
+    <item android:id="@+id/main_menu_highlight"
+          android:title="@string/main_menu_highlight"
           android:showAsAction="collapseActionView">
     </item>
 

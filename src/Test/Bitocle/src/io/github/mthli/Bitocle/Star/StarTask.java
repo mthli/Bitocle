@@ -85,7 +85,7 @@ public class StarTask extends AsyncTask<Void, Integer, Boolean> {
                 );
             }
 
-            if (list.size() == 0) {
+            if (list.size() <= 0) {
                 bookmark.setVisible(false);
                 fragment.setContentEmpty(true);
                 fragment.setEmptyText(R.string.repo_empty_list);

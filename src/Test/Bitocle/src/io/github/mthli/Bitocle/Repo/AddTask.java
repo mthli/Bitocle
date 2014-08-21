@@ -110,6 +110,12 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
     @Override
     protected void onCancelled() {
         pull.setRefreshing(false);
+        SuperToast.create(
+                fragment.getActivity(),
+                context.getString(R.string.repo_add_successful),
+                SuperToast.Duration.VERY_SHORT,
+                Style.getStyle(Style.BLUE)
+        ).show();
     }
 
     @Override
@@ -173,7 +179,7 @@ public class AddTask extends AsyncTask<Void, Integer, Boolean> {
             autoAdapter.notifyDataSetChanged();
             fragment.getSearch().setAdapter(autoAdapter);
 
-            if (list.size() == 0) {
+            if (list.size() <= 0) {
                 fragment.setContentEmpty(true);
                 fragment.setEmptyText(R.string.repo_empty_list);
                 fragment.setContentShown(true);
