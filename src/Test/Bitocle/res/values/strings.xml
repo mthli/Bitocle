@@ -15,7 +15,9 @@
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_button">Login</string>
-    <string name="login_philosophy">Do one thing and do it well.</string>
+    <string name="login_philosophy">
+        Do one thing and do it well.
+    </string>
     <string name="login_intent">Intent</string>
     <string name="login_thread">LoginThread</string>
     <string name="login_permission_notifications">notifications</string>
@@ -52,8 +54,12 @@
     <string name="repo_item_star">Star</string>
     <string name="repo_item_fork">Fork</string>
     <string name="repo_empty_description">No description.</string>
-    <string name="repo_empty_list">Empty list.</string>
-    <string name="repo_empty_error">Get data failed.</string>
+    <string name="repo_empty_list">
+        Use "search" or "star" to add some repos.
+    </string>
+    <string name="repo_empty_error">
+        404 Page not found.
+    </string>
     <string name="repo_add_successful">Add Successful</string>
     <string name="repo_add_failed">Add Failed</string>
     <string name="repo_refresh_successful">Refresh Successful</string>
@@ -64,8 +70,12 @@
     <string name="bookmark_item_icon">Icon</string>
     <string name="bookmark_choice_remove">Remove</string>
     <string name="bookmark_remove_successful">Remove Successful</string>
-    <string name="bookmark_empty_list">Empty list.</string>
-    <string name="bookmark_empty_error">Get data failed.</string>
+    <string name="bookmark_empty_list">
+        You can add bookark from long click repo item.
+    </string>
+    <string name="bookmark_empty_error">
+        404 Page not found.
+    </string>
     <string name="bookmark_refresh_successful">Refresh Successful</string>
     <string name="bookmark_refresh_failed">Refresh Failed</string>
 
@@ -80,9 +90,15 @@
     <string name="content_item_icon">Icon</string>
     <string name="content_choice_add">Add</string>
     <string name="content_add_successful">Add Successful</string>
-    <string name="content_database_error">Open Database failed</string>
-    <string name="content_empty_list">Empty list.</string>
-    <string name="content_empty_error">Get data failed.</string>
+    <string name="content_database_error">
+        Open Database Failed
+    </string>
+    <string name="content_empty_list">
+        Empty list.
+    </string>
+    <string name="content_empty_error">
+        404 Page not found.
+    </string>
     <string name="content_refresh_successful">Refresh Successful</string>
     <string name="content_refresh_failed">Refresh Failed</string>
 
@@ -95,8 +111,12 @@
     <!-- Commit -->
     <string name="commit_label">Commit</string>
     <string name="commit_item_icon">Icon</string>
-    <string name="commit_empty_list">Empty list.</string>
-    <string name="commit_empty_error">Get data failed.</string>
+    <string name="commit_empty_list">
+        This project has no commit histroy.
+    </string>
+    <string name="commit_empty_error">
+        404 Page not found.
+    </string>
     <string name="commit_refresh_successful">Refresh Successful</string>
     <string name="commit_refresh_failed">Refresh Failed</string>
 
@@ -113,7 +133,19 @@
     <string name="webview_unsupport">UnSupport</string>
     <string name="webview_default_css">github</string>
     <string name="webview_wait">Wait a Moment</string>
-    <string name="webview_empty_error">Get data failed.</string>
+    <string name="webview_empty_error">
+        404 Page not found.
+    </string>
+
+    <!-- About -->
+    <string name="about_label">About</string>
+    <string name="about_button_close">Close</string>
+    <string name="about_button_star">Star It</string>
+    <string name="about_readme">README.html</string>
+    <string name="about_url">https://github.com/mthli/Bitocle</string>
+    <string name="about_author">mthli</string>
+    <string name="about_name">Bitocle</string>
+    <string name="about_thx">Thank you for your star :)</string>
 
     <!-- Other -->
     <string name="pull_to_refresh_pull_label">Pull to refresh</string>

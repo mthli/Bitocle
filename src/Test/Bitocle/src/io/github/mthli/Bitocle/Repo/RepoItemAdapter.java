@@ -84,14 +84,26 @@ public class RepoItemAdapter extends ArrayAdapter<RepoItem> {
         );
         holder.name.setText(repoItem.getName());
         holder.date.setText(repoItem.getDate());
-        String description = repoItem.getDescription();
-        if (description.length() == 0) {
+
+        String description;
+        try {
+            description = repoItem.getDescription();
+            if (description.length() == 0) {
+                description = context.getString(R.string.repo_empty_description);
+            }
+        } catch (NullPointerException n) {
             description = context.getString(R.string.repo_empty_description);
         }
         holder.description.setText(description);
-        String lang = repoItem.getLang();
-        if (lang.equals("null")) {
-            context.getString(R.string.repo_item_unknown);
+
+        String lang;
+        try {
+            lang = repoItem.getLang();
+            if (lang.equals("null")) {
+                lang = context.getString(R.string.repo_item_unknown);
+            }
+        } catch (NullPointerException n) {
+            lang = context.getString(R.string.repo_item_unknown);
         }
         holder.info.setText(lang
                         + "   "

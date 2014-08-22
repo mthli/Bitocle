@@ -8,4 +8,6 @@
              android:bottom="10dp">
     </padding>
 
+    <solid android:color="@color/compatibility_white" />
+
 </shape>

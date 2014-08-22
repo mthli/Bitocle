@@ -5,7 +5,9 @@
           android:versionName="2.1">
 
     <!-- SDK -->
-    <uses-sdk android:minSdkVersion="14"/>
+    <uses-sdk android:minSdkVersion="14"
+              android:targetSdkVersion="18">
+    </uses-sdk>
 
     <!-- Permission -->
     <uses-permission android:name="android.permission.INTERNET" />

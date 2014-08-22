@@ -1,7 +1,5 @@
 package io.github.mthli.Bitocle.Repo;
 
-import android.graphics.drawable.Drawable;
-
 public class RepoItem {
     private String name;
     private String date;

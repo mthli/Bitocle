@@ -83,15 +83,28 @@ public class StarItemAdapter extends ArrayAdapter<StarItem> {
         );
         holder.name.setText(starItem.getName());
         holder.date.setText(starItem.getDate());
-        String description = starItem.getDescription();
-        if (description.length() == 0) {
+
+        String description;
+        try {
+            description = starItem.getDescription();
+            if (description.length() == 0) {
+                description = context.getString(R.string.repo_empty_description);
+            }
+        } catch (NullPointerException n) {
             description = context.getString(R.string.repo_empty_description);
         }
         holder.description.setText(description);
-        String lang = starItem.getLang();
-        if (lang == null) {
+
+        String lang;
+        try {
+            lang = starItem.getLang();
+            if (lang.equals("null")) {
+                lang = context.getString(R.string.repo_item_unknown);
+            }
+        } catch (NullPointerException n) {
             lang = context.getString(R.string.repo_item_unknown);
         }
+
         holder.info.setText(lang
                         + "   "
                         + context.getString(R.string.repo_item_star)

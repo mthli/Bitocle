@@ -33,4 +33,7 @@
     <color name="sunburst">#000000</color>
     <color name="tomorrow">#ffffff</color>
 
+    <!-- AutoCompleteTextView Background -->
+    <color name="compatibility_white">#fff3f3f3</color>
+
 </resources>

@@ -32,6 +32,7 @@ public class WebViewActivity extends FragmentActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(title);
         actionBar.setSubtitle(subTitle);
+        actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         fragment = (WebViewFragment) getSupportFragmentManager().findFragmentById(R.id.webview_fragment);

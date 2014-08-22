@@ -1,7 +1,5 @@
 package io.github.mthli.Bitocle.Star;
 
-import android.graphics.drawable.Drawable;
-
 public class StarItem {
     private String name;
     private String date;

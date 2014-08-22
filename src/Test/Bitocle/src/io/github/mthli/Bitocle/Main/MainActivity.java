@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.view.*;
+import android.webkit.WebView;
 import android.widget.AutoCompleteTextView;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.github.johnpersano.supertoasts.util.Style;
@@ -18,6 +19,13 @@ import io.github.mthli.Bitocle.Database.Bookmark.BAction;
 import io.github.mthli.Bitocle.Database.Repo.RAction;
 import io.github.mthli.Bitocle.Login.LoginActivity;
 import io.github.mthli.Bitocle.R;
+import io.github.mthli.Bitocle.WebView.StyleMarkdown;
+import org.apache.commons.io.IOUtils;
+import org.eclipse.egit.github.core.RepositoryId;
+import org.eclipse.egit.github.core.service.StarService;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 public class MainActivity extends FragmentActivity {
     private MainFragment fragment;
@@ -32,6 +40,7 @@ public class MainActivity extends FragmentActivity {
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(R.string.app_name);
         actionBar.setSubtitle(null);
+        actionBar.setDisplayShowHomeEnabled(false);
         actionBar.setHomeButtonEnabled(false);
 
         fragment = (MainFragment) getSupportFragmentManager().findFragmentById(R.id.main_fragment);
@@ -87,7 +96,7 @@ public class MainActivity extends FragmentActivity {
                 showHighlightDialog();
                 break;
             case R.id.main_menu_about:
-                /* Do something */
+                showAboutDialog();
                 break;
             case R.id.main_menu_logout:
                 logoutAction();
@@ -161,7 +170,7 @@ public class MainActivity extends FragmentActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 editor.putInt(getString(R.string.login_sp_highlight_num), which);
                                 String str = getResources().getStringArray(R.array.dialog_highlight_list)[which];
-                                str = str.toLowerCase() + ".css";
+                                str = str.toLowerCase();
                                 editor.putString(getString(R.string.login_sp_highlight_css), str);
                                 editor.commit();
                                 dialog.dismiss();
@@ -171,6 +180,67 @@ public class MainActivity extends FragmentActivity {
         dialog = builder.create();
         dialog.show();
     }
+
+    private void showAboutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.about_label);
+
+        String str = null;
+        try {
+            InputStream inputStream = getResources().getAssets().open(getString(R.string.about_readme));
+            str = IOUtils.toString(inputStream);
+        } catch (IOException i) {
+            /* Do nothing */
+        }
+
+        final WebView webView = new WebView(MainActivity.this);
+        webView.loadDataWithBaseURL(
+                StyleMarkdown.BASE_URL,
+                str,
+                null,
+                getString(R.string.webview_encoding),
+                null
+        );
+        webView.setVisibility(View.VISIBLE);
+        builder.setView(webView);
+
+        builder.setPositiveButton(R.string.about_button_star, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                new Thread(starThread).start();
+                SuperToast.create(
+                        MainActivity.this,
+                        getString(R.string.about_thx),
+                        SuperToast.Duration.VERY_SHORT,
+                        Style.getStyle(Style.GREEN)
+                ).show();
+            }
+        });
+        builder.setNegativeButton(R.string.about_button_close, null);
+        builder.setInverseBackgroundForced(true);
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
+    }
+
+    Runnable starThread = new Runnable() {
+        @Override
+        public void run() {
+            StarService starService = new StarService(fragment.getClient());
+            RepositoryId repositoryId = new RepositoryId(
+                    getString(R.string.about_author),
+                    getString(R.string.about_name)
+            );
+
+            try {
+                if (!starService.isStarring(repositoryId)) {
+                    starService.star(repositoryId);
+                }
+            } catch (IOException i) {
+                /* Do nothing */
+            }
+        }
+    };
 
     private void logoutAction() {
         RAction rAction = new RAction(MainActivity.this);

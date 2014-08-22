@@ -1,10 +1,13 @@
 package io.github.mthli.Bitocle.Login;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -12,17 +15,21 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import com.github.johnpersano.supertoasts.SuperToast;
 import com.github.johnpersano.supertoasts.util.Style;
 import io.github.mthli.Bitocle.Main.MainActivity;
 import io.github.mthli.Bitocle.R;
+import io.github.mthli.Bitocle.WebView.StyleMarkdown;
+import org.apache.commons.io.IOUtils;
 import org.eclipse.egit.github.core.Authorization;
 import org.eclipse.egit.github.core.client.GitHubClient;
 import org.eclipse.egit.github.core.service.OAuthService;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,6 +60,8 @@ public class LoginActivity extends Activity {
             startActivity(intent);
             finish();
         }
+
+        getActionBar().setDisplayShowHomeEnabled(false);
 
         final EditText userText = (EditText) findViewById(R.id.login_username);
         final EditText passText = (EditText) findViewById(R.id.login_password);
@@ -175,11 +184,49 @@ public class LoginActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem menuItem) {
         switch (menuItem.getItemId()) {
             case R.id.login_menu_about:
-                /* Do something */
+                showAboutDialog();
                 break;
             default:
                 break;
         }
         return true;
+    }
+
+    private void showAboutDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+        builder.setTitle(R.string.about_label);
+
+        String str = null;
+        try {
+            InputStream inputStream = getResources().getAssets().open(getString(R.string.about_readme));
+            str = IOUtils.toString(inputStream);
+        } catch (IOException i) {
+            /* Do nothing */
+        }
+
+        WebView webView = new WebView(LoginActivity.this);
+        webView.loadDataWithBaseURL(
+                StyleMarkdown.BASE_URL,
+                str,
+                null,
+                getString(R.string.webview_encoding),
+                null
+        );
+        webView.setVisibility(View.VISIBLE);
+        builder.setView(webView);
+
+        builder.setPositiveButton(R.string.about_button_star, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Uri uri = Uri.parse(getString(R.string.about_url));
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
+        builder.setNegativeButton(R.string.about_button_close, null);
+        builder.setInverseBackgroundForced(true);
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
     }
 }
