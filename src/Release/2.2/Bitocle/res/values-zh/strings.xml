@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Login -->
+    <string name="login_menu_about">关于</string>
+    <string name="login_username">用户名</string>
+    <string name="login_password">密码</string>
+    <string name="login_button">登入</string>
+    <string name="login_message_miss_both">请输入用户名和密码</string>
+    <string name="login_message_miss_username">请输入用户名</string>
+    <string name="login_message_miss_password">请输入密码</string>
+    <string name="login_message_authoring">认证中</string>
+    <string name="login_message_auth_failed">认证失败</string>
+
+    <!-- Main -->
+    <string name="main_menu_star">近期加星</string>
+    <string name="main_menu_bookmark">书签</string>
+    <string name="main_menu_refresh">刷新</string>
+    <string name="main_menu_highlight">代码高亮</string>
+    <string name="main_menu_horizontal">代码横屏</string>
+    <string name="main_menu_night">夜间模式</string>
+    <string name="main_menu_about">关于</string>
+    <string name="main_menu_logout">登出</string>
+    <string name="main_logout_failed">登出失败</string>
+
+    <!-- Repo -->
+    <string name="repo_item_overflow_commit">提交记录</string>
+    <string name="repo_item_overflow_remove">移除</string>
+    <string name="repo_item_unknown">未知</string>
+    <string name="repo_empty_description">没有描述</string>
+    <string name="repo_empty_list">
+        你可以使用搜索框\n或者从“近期加星”列表中添加项目。
+    </string>
+    <string name="repo_empty_error">
+        加载失败
+    </string>
+    <string name="repo_add_successful">添加成功</string>
+    <string name="repo_add_failed">添加失败</string>
+    <string name="repo_refresh_successful">刷新成功</string>
+    <string name="repo_refresh_failed">刷新失败</string>
+
+    <!-- Bookmark -->
+    <string name="bookmark_label">书签</string>
+    <string name="bookmark_choice_remove">移除书签</string>
+    <string name="bookmark_remove_successful">移除成功</string>
+    <string name="bookmark_empty_list">
+        在目录树中长按列表项添加书签。
+    </string>
+    <string name="bookmark_empty_error">
+        加载失败
+    </string>
+    <string name="bookmark_refresh_successful">刷新成功</string>
+    <string name="bookmark_refresh_failed">刷新失败</string>
+
+    <!-- Star -->
+    <string name="star_label">近期加星</string>
+    <string name="star_item_overflow_commit">提交记录</string>
+    <string name="star_item_overflow_add">添加</string>
+    <string name="star_refresh_successful">刷新成功</string>
+    <string name="star_refresh_failed">刷新失败</string>
+
+    <!-- Content -->
+    <string name="content_choice_add">添加书签</string>
+    <string name="content_add_successful">添加成功</string>
+    <string name="content_database_error">
+        打开书签数据库失败
+    </string>
+    <string name="content_empty_list">
+        当前目录为空。
+    </string>
+    <string name="content_empty_error">
+        加载失败
+    </string>
+    <string name="content_refresh_successful">刷新成功</string>
+    <string name="content_refresh_failed">刷新失败</string>
+
+    <!-- Overflow -->
+    <string name="overflow_remove_successful">移除成功</string>
+    <string name="overflow_remove_failed">移除失败</string>
+    <string name="overflow_add_successful">添加成功</string>
+    <string name="overflow_add_failed">添加失败</string>
+
+    <!-- Commit -->
+    <string name="commit_label">提交记录</string>
+    <string name="commit_empty_list">
+        当前项目没有任何提交记录。
+    </string>
+    <string name="commit_empty_error">
+        加载失败
+    </string>
+    <string name="commit_refresh_successful">刷新成功</string>
+    <string name="commit_refresh_failed">刷新失败</string>
+
+    <!--WebView -->
+    <string name="webview_menu_refresh">刷新</string>
+    <string name="webview_menu_highlight">代码高亮</string>
+    <string name="webview_menu_horizontal">代码横屏</string>
+    <string name="webview_menu_night">夜间模式</string>
+    <string name="webview_unsupport">不支持的文件类型</string>
+    <string name="webview_wait">稍等片刻</string>
+    <string name="webview_empty_error">
+        加载失败
+    </string>
+
+    <!-- About -->
+    <string name="about_label">关于</string>
+    <string name="about_button_close">关闭</string>
+    <string name="about_button_star">在GitHub上Star</string>
+    <string name="about_thx">感谢您对这个项目的支持 :)</string>
+
+    <!-- Other -->
+    <string name="pull_to_refresh_pull_label">下拉刷新</string>
+    <string name="pull_to_refresh_release_label">释放</string>
+    <string name="pull_to_refresh_refreshing_label">加载中</string>
+
+</resources>

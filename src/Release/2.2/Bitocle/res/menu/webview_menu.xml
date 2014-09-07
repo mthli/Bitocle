@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/webview_menu_refresh"
+          android:title="@string/webview_menu_refresh"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/webview_menu_highlight"
+          android:title="@string/webview_menu_highlight"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/webview_menu_horizontal"
+          android:title="@string/webview_menu_horizontal"
+          android:checkable="true"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/webview_menu_night"
+          android:title="@string/webview_menu_night"
+          android:checkable="true"
+          android:showAsAction="collapseActionView">
+    </item>
+
+</menu>

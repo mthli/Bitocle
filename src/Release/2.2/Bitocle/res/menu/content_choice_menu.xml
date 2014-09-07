@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/content_choice_add"
+          android:title="@string/content_choice_add"
+          android:icon="@drawable/ic_action_add"
+          android:showAsAction="always">
+    </item>
+
+</menu>

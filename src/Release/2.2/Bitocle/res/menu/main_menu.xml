@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/main_menu_star"
+          android:title="@string/main_menu_star"
+          android:icon="@drawable/ic_action_star"
+          android:showAsAction="always">
+    </item>
+
+    <item android:id="@+id/main_menu_bookmark"
+          android:title="@string/main_menu_bookmark"
+          android:icon="@drawable/ic_action_bookmark"
+          android:showAsAction="always">
+    </item>
+
+    <item android:id="@+id/main_menu_refresh"
+          android:title="@string/main_menu_refresh"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/main_menu_highlight"
+          android:title="@string/main_menu_highlight"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/main_menu_horizontal"
+          android:title="@string/main_menu_horizontal"
+          android:checkable="true"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/main_menu_night"
+          android:title="@string/main_menu_night"
+          android:checkable="true"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/main_menu_about"
+          android:title="@string/main_menu_about"
+          android:showAsAction="collapseActionView">
+    </item>
+
+    <item android:id="@+id/main_menu_logout"
+          android:title="@string/main_menu_logout"
+          android:showAsAction="collapseActionView">
+    </item>
+
+</menu>

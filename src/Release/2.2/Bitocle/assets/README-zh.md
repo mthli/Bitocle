@@ -14,34 +14,30 @@ Bitocle是一款简单的用来查看自己托管在GitHub上的代码的安卓�
 
 ## 如何使用它呢？
 
-首先来看截图：
-
-![all_in_one.png](/art/ScreenShot/all_in_one.png)
-
 我们规定打开应用看到的第一个列表为“主列表”。
-
+ 
  - 搜索框会自动补全当前输入内容，筛选出主列表中符合输入的项目，点击列表项即可快速跳转至项目。
-
+ 
  - 在搜索框中按照“用户名/项目名”的格式输入字符，并点击输入法上的“发送（回车）”键，即可将输入的项目添加到主列表。
-
+ 
  - 在“近期加星”列表中，点击列表项右侧的菜单按钮，可以选择将加星项目添加到主列表。
 
  - 在项目的目录树下长按列表项可以选择添加书签。
 
  - 在书签界面长按列表项可以选择删除书签。
-
+ 
  - 点击Overflow菜单中的“代码高亮”，可以选择5种不同的高亮模式，方便阅读代码。
 
  - 点击Overflow菜单中的“代码横屏”，可以在阅读代码的时候自动横屏。
 
  - 点击Overflow菜单中的“夜间模式”，可以降低屏幕亮度，方便夜间阅读。
-
+ 
  - Overflow菜单中的“刷新选项可以在数据加载失败的时候重载数据，但是**不建议**频繁的刷新。
-
+ 
  - 左上角的返回键无论何时都会返回主列表。
-
+ 
  - 屏幕下方的返回键用于返回当前位置的上一层；在点击书签项之后原有的目录树将会被新的目录树覆盖。
-
+ 
 ## 目前存在哪些问题？
 
  - 不能优雅的退出应用。涉及网络操作的线程在快速退出时可能导致下次启动时白屏，因此使用了`System.exit(0)`直接将应用kill掉，所有就没有退出动画了。
@@ -49,167 +45,59 @@ Bitocle是一款简单的用来查看自己托管在GitHub上的代码的安卓�
  - 代码逻辑不够完美，导致应用的流畅性可能受到影响。
 
  - 缺少缓存。目前我并没有找到比较好的可以实现缓存的方式，由此导致每次查看代码的时候都需要进行网络操作，效率不高。如果你有什么比较好的想法，可以联系我，联系方式见下文。
-
+ 
  - 应用程序的启动图标。有意向的同学可以考虑帮我绘制一个漂亮的图标，联系方式见下文。
-
+ 
  - 在代码高亮时WebView加载及渲染效率较低的问题。
 
  - 当一行代码太长，在暗色系主题下WebView会显示白边。这属于代码风格问题，通常不推荐写太长不折行的代码。有兴趣的同学可以参阅[google-styleguide](https://code.google.com/p/google-styleguide/ "google-styleguide")。
-
+ 
  - Webview加载Markdown文件有时候无法显示图片，这取决于图片的大小和网络问题。
 
  - 中文乱码。使用**UTF-8**编码格式能有效防止中文乱码的出现。
-
+ 
  - 部分机型的适配问题，以及其他未知Bug（边界问题）。
-
+ 
 ## 下一阶段打算做什么？
 
  - 尝试解决以上提到的Bug。
-
+ 
  - 优化代码。
-
+ 
  - 美化UI。
-
+ 
 ## 关于项目：
 
  - 项目主页：[Bitocle](https://github.com/mthli/Bitocle "Bitocle的项目主页")
-
+ 
  - 遵循协议：[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html "Apache License, Version 2.0")
-
+ 
  - 开发者：[Matthew Lee](http://mthli.github.io/ "Matthew Lee的个人博客")
-
+ 
 ## Thanks:
 
 Bitocle在开发过程中使用了以下开源项目：
 
  - [ActionBar-PullToRefresh](https://github.com/chrisbanes/ActionBar-PullToRefresh "ActionBar-PullToRefresh")
-
+ 
  - [Android-ProgressFragment](https://github.com/johnkil/Android-ProgressFragment "Android-ProgressFragment")
-
+ 
  - [commons-io](https://github.com/apache/commons-io "commons-io")
-
+ 
  - [egit-github](https://github.com/eclipse/egit-github "egit-github")
-
+ 
  - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css "github-markdown-css")
-
+ 
  - [google-gson](https://code.google.com/p/google-gson/ "google-gson")
-
+ 
  - [highlight.js](https://github.com/isagalaev/highlight.js "highlight.js")
-
+ 
  - [jQuery](http://jquery.com/ "jQuery")
-
+ 
  - [okhttp](https://github.com/square/okhttp "okhttp")
-
+ 
  - [SmoothProgressBar](https://github.com/castorflex/SmoothProgressBar "SmoothProgressBar")
-
+ 
  - [SuperToasts](https://github.com/JohnPersano/SuperToasts "SuperToasts")
-
+ 
 同时也要感谢支持这个项目的所有人，我会继续努力哒！
-
----
-
-## What is Bitocle?
-
-Bitocle is a simple app that allows you to view your code on GitHub.
-
-Version: 2.2 Release
-
-For Android 4.0+.
-
-## Some explains:
-
- - Bitocle use OAuth so you don't worry about your GitHub Password, we don't use/save it.
-
- - Bitocle is "Read Only", we don't change any thing on your GitHub.
-
- - Sorry for my poor English :)
-
-## How to use it?
-
-Screenshot:
-
-![all_in_one.png](/art/ScreenShot/all_in_one.png)
-
-We call the first list you see "main list".
-
- - You can use "Search" to quick skip on main list.
-
- - Type "User/Repo" style on "Search", you can add the repo("User/Repo") to main list.
-
- - On "Star" interface, you can click the right button on a(n) item and "Add" means you can add this item to main list.
-
- - On catalog, long click, add bookmark.
-
- - On "Bookmark" interface, long click, remove bookmark.
-
- - Use the menu item "Highlight" of "Overflow" on ActionBar to select awesome source highlight effect.
-
- - Use the menu item "Horizontal" of "Overflow" on ActionBar, Bitocle will auto landscape when you view your code.
-
- - Use the menu item "Night" of "Overflow" on ActionBar for night.
-
- - The "back" button on the left of ActionBar will back to main list whenever/whereever.
-
- - The "back" button on the button of screen will back to the previous interface you ever seen; but when you click "Bookmark" menu, it will be reset.
-
-## Does Bitocle has some matters?
-
- - We use `System.exit(0)` to quit, for killing some unknown threads. So it is not very grace.
-
- - No cache. I have no idea to make it come true.
-
- - The icon of Bitocle looks no very good, I hope someone could help us make a(n) awesome icon.
-
- - jQuery on WebView looks not very efficent.
-
- - When a line is too long, WebView will show whiht edge when you use some dark themes. We don't suggest you to write too long, see[google-styleguide](https://code.google.com/p/google-styleguide/ "google-styleguide").
-
- - When WebView load Markdown, the image may loaded failed, for network state or other reasons.
-
- - We suggest you use UTF-8 encoding for no messy code.
-
- - Failed to adapt some phone.
-
-## What we will do next?
-
- - Try to fix some bugs.
-
- - Optimize Bitcole source code.
-
- - Optimize UI.
-
-## About Project:
-
- - Homepage: [Bitocle](https://github.com/mthli/Bitocle "Bitocle Homepage")
-
- - License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html "Apache License, Version 2.0")
-
- - Author: [Matthew Lee](http://mthli.github.io/ "Matthew Lee's Blog")
-
-## Thanks:
-
-When we develop Bitcole, those open source projects we use:
-
- - [ActionBar-PullToRefresh](https://github.com/chrisbanes/ActionBar-PullToRefresh "ActionBar-PullToRefresh")
-
- - [Android-ProgressFragment](https://github.com/johnkil/Android-ProgressFragment "Android-ProgressFragment")
-
- - [commons-io](https://github.com/apache/commons-io "commons-io")
-
- - [egit-github](https://github.com/eclipse/egit-github "egit-github")
-
- - [github-markdown-css](https://github.com/sindresorhus/github-markdown-css "github-markdown-css")
-
- - [google-gson](https://code.google.com/p/google-gson/ "google-gson")
-
- - [highlight.js](https://github.com/isagalaev/highlight.js "highlight.js")
-
- - [jQuery](http://jquery.com/ "jQuery")
-
- - [okhttp](https://github.com/square/okhttp "okhttp")
-
- - [SmoothProgressBar](https://github.com/castorflex/SmoothProgressBar "SmoothProgressBar")
-
- - [SuperToasts](https://github.com/JohnPersano/SuperToasts "SuperToasts")
-
-And thanks all supporter :)

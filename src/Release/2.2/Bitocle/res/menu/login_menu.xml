@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/login_menu_about"
+          android:title="@string/login_menu_about"
+          android:showAsAction="collapseActionView">
+    </item>
+
+</menu>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+    <!-- SmoothProgressBar -->
+    <color name="default_progress_bar_color">#FF33B5E5</color>
+
+    <!-- CustomActionBar -->
+    <color name="actionbar_background_default">#F6F6F6</color>
+    <color name="actionbar_background_start">#F8f8f8</color>
+    <color name="actionbar_background_end">#F3F3F3</color>
+
+    <!-- List item -->
+    <color name="list_item_background_default">#FFFFFF</color>
+    <color name="list_item_background_start">#F2F2F2</color>
+    <color name="list_item_background_end">#F2F2F2</color>
+
+    <!-- Dark -->
+    <color name="dark_hit">#111111</color>
+    <color name="dark_default">#333333</color>
+    <color name="dark_general">#666666</color>
+
+    <!-- SuperToasts -->
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="dark_gray">#333333</color>
+    <color name="light_gray">#AFFFFFFF</color>
+
+    <!-- WebView Background -->
+    <color name="github">#f8f8f8</color>
+    <color name="monokai">#272822</color>
+    <color name="solarized">#002b36</color>
+    <color name="sunburst">#000000</color>
+    <color name="tomorrow">#ffffff</color>
+
+    <!-- AutoCompleteTextView Background -->
+    <color name="compatibility_white">#fff3f3f3</color>
+
+</resources>

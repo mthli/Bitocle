@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/star_item_overflow_commit"
+          android:title="@string/star_item_overflow_commit">
+    </item>
+
+    <item android:id="@+id/star_item_overflow_add"
+          android:title= "@string/star_item_overflow_add">
+    </item>
+
+</menu>
