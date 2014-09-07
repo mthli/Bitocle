@@ -10,13 +10,13 @@ Bitocle是一款简单的用来查看自己托管在GitHub上的代码的安卓�
 
  - Bitocle使用OAuth登陆GitHub，不会记录您登陆时输入的GitHub密码。
 
- - 在Bitocle中完成的操作不会影响您托管在GitHub上面的内容，可以理解为，它是“只读”的。
+ - 在Bitocle中完成的操作不会影响您托管在GitHub上面的内容，可以理解为，它是**只读**的。
 
 ## 如何使用它呢？
 
-首先来看截图：
+首先来看应用截图：
 
-![all_in_one.png](/art/ScreenShot/all_in_one.png)
+![all_in_one.png](/art/Screenshot/all_in_one.png)
 
 我们规定打开应用看到的第一个列表为“主列表”。
 
@@ -38,7 +38,7 @@ Bitocle是一款简单的用来查看自己托管在GitHub上的代码的安卓�
 
  - Overflow菜单中的“刷新选项可以在数据加载失败的时候重载数据，但是**不建议**频繁的刷新。
 
- - 左上角的返回键无论何时都会返回主列表。
+ - 左上角的返回键**无论何时**都会返回主列表。
 
  - 屏幕下方的返回键用于返回当前位置的上一层；在点击书签项之后原有的目录树将会被新的目录树覆盖。
 
@@ -120,7 +120,7 @@ For Android 4.0+.
 
  - Bitocle use OAuth so you don't worry about your GitHub Password, we don't use/save it.
 
- - Bitocle is "Read Only", we don't change any thing on your GitHub.
+ - Bitocle is **Read Only**, we don't change any thing on your GitHub.
 
  - Sorry for my poor English :)
 
@@ -128,29 +128,29 @@ For Android 4.0+.
 
 Screenshot:
 
-![all_in_one.png](/art/ScreenShot/all_in_one.png)
+![all_in_one.png](/art/Screenshot/all_in_one.png)
 
-We call the first list you see "main list".
+We call the first list you see `main list`.
 
- - You can use "Search" to quick skip on main list.
+ - You can use `Search` to quick skip on main list.
 
- - Type "User/Repo" style on "Search", you can add the repo("User/Repo") to main list.
+ - Type `User/Repo` style on `Search`, you can add the repo(`User/Repo`) to main list.
 
- - On "Star" interface, you can click the right button on a(n) item and "Add" means you can add this item to main list.
+ - On `Star` interface, you can click the right button on a(n) item and `Add` means you can add this item to main list.
 
  - On catalog, long click, add bookmark.
 
- - On "Bookmark" interface, long click, remove bookmark.
+ - On `Bookmark` interface, long click, remove bookmark.
 
- - Use the menu item "Highlight" of "Overflow" on ActionBar to select awesome source highlight effect.
+ - Use the menu item `Highlight` of `Overflow` on ActionBar to select awesome source highlight effect.
 
- - Use the menu item "Horizontal" of "Overflow" on ActionBar, Bitocle will auto landscape when you view your code.
+ - Use the menu item `Horizontal` of `Overflow` on ActionBar, Bitocle will auto landscape when you view your code.
 
- - Use the menu item "Night" of "Overflow" on ActionBar for night.
+ - Use the menu item `Night` of `Overflow` on ActionBar for night.
 
- - The "back" button on the left of ActionBar will back to main list whenever/whereever.
+ - The `Back` button on the left of ActionBar will back to main list **whenever/wherever**.
 
- - The "back" button on the button of screen will back to the previous interface you ever seen; but when you click "Bookmark" menu, it will be reset.
+ - The `Back` button on the button of screen will back to the previous interface you ever seen; but when you click `Bookmark` menu, it will be reset.
 
 ## Does Bitocle has some matters?
 
@@ -162,7 +162,7 @@ We call the first list you see "main list".
 
  - jQuery on WebView looks not very efficent.
 
- - When a line is too long, WebView will show whiht edge when you use some dark themes. We don't suggest you to write too long, see[google-styleguide](https://code.google.com/p/google-styleguide/ "google-styleguide").
+ - When a line is too long, WebView will show whiht edge when you use some dark themes. We don't suggest you to write too long, see [google-styleguide](https://code.google.com/p/google-styleguide/ "google-styleguide").
 
  - When WebView load Markdown, the image may loaded failed, for network state or other reasons.
 

@@ -10,33 +10,33 @@ For Android 4.0+.
 
  - Bitocle use OAuth so you don't worry about your GitHub Password, we don't use/save it.
 
- - Bitocle is "Read Only", we don't change any thing on your GitHub.
+ - Bitocle is **Read Only**, we don't change any thing on your GitHub.
 
  - Sorry for my poor English :)
 
 ## How to use it?
 
-We call the first list you see "main list".
+We call the first list you see `main list`.
 
- - You can use "Search" to quick skip on main list.
+ - You can use `Search` to quick skip on main list.
 
- - Type "User/Repo" style on "Search", you can add the repo("User/Repo") to main list.
+ - Type `User/Repo` style on `Search`, you can add the repo(`User/Repo`) to main list.
 
- - On "Star" interface, you can click the right button on a(n) item and "Add" means you can add this item to main list.
+ - On `Star` interface, you can click the right button on a(n) item and `Add` means you can add this item to main list.
 
  - On catalog, long click, add bookmark.
 
- - On "Bookmark" interface, long click, remove bookmark.
+ - On `Bookmark` interface, long click, remove bookmark.
 
- - Use the menu item "Highlight" of "Overflow" on ActionBar to select awesome source highlight effect.
+ - Use the menu item `Highlight` of `Overflow` on ActionBar to select awesome source highlight effect.
 
- - Use the menu item "Horizontal" of "Overflow" on ActionBar, Bitocle will auto landscape when you view your code.
+ - Use the menu item `Horizontal` of `Overflow` on ActionBar, Bitocle will auto landscape when you view your code.
 
- - Use the menu item "Night" of "Overflow" on ActionBar for night.
+ - Use the menu item `Night` of `Overflow` on ActionBar for night.
 
- - The "back" button on the left of ActionBar will back to main list whenever/whereever.
+ - The `Back` button on the left of ActionBar will back to main list **whenever/wherever**.
 
- - The "back" button on the button of screen will back to the previous interface you ever seen; but when you click "Bookmark" menu, it will be reset.
+ - The `Back` button on the button of screen will back to the previous interface you ever seen; but when you click `Bookmark` menu, it will be reset.
 
 ## Does Bitocle has some matters?
 
@@ -48,7 +48,7 @@ We call the first list you see "main list".
 
  - jQuery on WebView looks not very efficent.
 
- - When a line is too long, WebView will show whiht edge when you use some dark themes. We don't suggest you to write too long, see[google-styleguide](https://code.google.com/p/google-styleguide/ "google-styleguide").
+ - When a line is too long, WebView will show whiht edge when you use some dark themes. We don't suggest you to write too long, see [google-styleguide](https://code.google.com/p/google-styleguide/ "google-styleguide").
 
  - When WebView load Markdown, the image may loaded failed, for network state or other reasons.
 
