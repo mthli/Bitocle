@@ -4,6 +4,8 @@ Bitocle是一款简单的用来查看自己托管在GitHub上的代码的安卓�
 
 版本号：2.2 Release
 
+下载链接：https://github.com/mthli/Bitocle/releases/download/v2.2/Bitocle.2.2.apk
+
 支持安卓4.0及其以上版本设备。
 
 ## 特别说明：
@@ -115,6 +117,8 @@ Bitocle is a simple app that allows you to view your code on GitHub.
 Version: 2.2 Release
 
 For Android 4.0+.
+
+Download link: https://github.com/mthli/Bitocle/releases/download/v2.2/Bitocle.2.2.apk
 
 ## Some explains:
 
