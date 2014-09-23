@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App Info -->
+    <string name="app_name">Bitocle</string>
+    <string name="app_url">https://mthli.github.io</string>
+
+    <!-- Splash -->
+    <string name="splash_label">Splash</string>
+    <string name="splash_bitocle">bitcole</string>
+    <string name="splash_description">Yet another unofficial GitHub client.</string>
+    <string name="splash_sign_in_button">Sign in</string>
+    <string name="splash_sign_in_dialog_username">Username</string>
+    <string name="splash_sign_in_dialog_password">Password</string>
+    <string name="splash_sign_in_dialog_cancel">Cancel</string>
+    <string name="splash_sign_in_dialog_ok">OK</string>
+    <string name="splash_query">Haven\'t got a GitHub account?</string>
+    <string name="splash_sign_up_button">Sign up</string>
+    <string name="splash_to_main">SplashToMain</string>
+    <string name="splash_input_error">
+        Miss Username or Password
+    </string>
+    <string name="splash_sign_in_authenticating">Authenticating</string>
+    <string name="splash_sign_in_thread">Thread</string>
+    <string name="splash_sign_in_error">
+        Authentication failed
+    </string>
+    <string name="splash_sign_up_uri">
+        https://github.com/join
+    </string>
+
+    <!-- Main -->
+    <string name="main_label">@string/app_name</string>
+
+    <!-- About -->
+    <string name="about_label">About</string>
+
+    <!-- Permission -->
+    <string name="permission_notifications">notifications</string>
+    <string name="permission_repo">repo</string>
+    <string name="permission_user">user</string>
+
+    <!-- SharePreferences -->
+    <string name="sp_file">SP</string>
+    <string name="sp_oauth">OAuth</string>
+    <string name="sp_username">Username</string>
+    <string name="sp_highlight_num">Num</string>
+    <string name="sp_highlight_css">CSS</string>
+    <string name="sp_horizontal">Horizontal</string>
+    <string name="sp_night">Night</string>
+
+    <!-- CSS -->
+    <string name="default_css">GitHub</string>
+    <string-array name="dialog_highlight_list">
+        <item>GitHub</item>
+        <item>Monokai</item>
+        <item>Solarized</item>
+        <item>Sunburst</item>
+        <item>Tomorrow</item>
+    </string-array>
+
+</resources>

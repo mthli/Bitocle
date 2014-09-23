@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/splash_relative_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/default_blue">
+
+    <LinearLayout android:id="@+id/splash_start_part"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:paddingBottom="256dp">
+
+        <ImageView android:id="@+id/splash_bitocle"
+                   android:contentDescription="@string/splash_bitocle"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:paddingBottom="7dp"
+                   android:src="@drawable/bitocle">
+        </ImageView>
+
+        <TextView android:id="@+id/splash_description"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal"
+                  android:text="@string/splash_description"
+                  android:textColor="@color/default_white"
+                  android:textSize="12sp">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/splash_end_part"
+                  android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_centerInParent="true"
+                  android:paddingTop="256dp">
+
+        <Button android:id="@+id/splash_sign_in_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:background="@drawable/splash_sign_in_button_selector"
+                android:text="@string/splash_sign_in_button"
+                android:textColor="@color/default_blue">
+        </Button>
+
+        <TextView android:id="@+id/splash_query"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center_horizontal"
+                  android:layout_marginTop="10dp"
+                  android:text="@string/splash_query"
+                  android:textColor="@color/default_white"
+                  android:textSize="12sp">
+        </TextView>
+
+        <Button android:id="@+id/splash_sign_up_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
+                android:background="@drawable/splash_sign_up_button_selector"
+                android:text="@string/splash_sign_up_button"
+                android:textColor="@color/default_white">
+        </Button>
+
+    </LinearLayout>
+
+</RelativeLayout>

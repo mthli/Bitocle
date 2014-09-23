@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Splash -->
+    <style name="SplashActivityTheme" parent="android:Theme.Holo.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <!-- Main -->
+    <style name="MainActivityTheme" parent="android:Theme.Holo.Light">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:actionBarStyle">@style/CustomActionBarStyle</item>
+    </style>
+
+    <!-- About -->
+    <style name="AboutActivityTheme" parent="android:Theme.Holo.Light">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:absListViewStyle">@style/CustomActionBarStyle</item>
+    </style>
+
+    <!-- CustomActionBarStyle -->
+    <style name="CustomActionBarStyle" parent="android:Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/default_blue</item>
+        <item name="android:actionBarDivider">@null</item>
+    </style>
+
+</resources>
