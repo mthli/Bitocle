@@ -76,7 +76,7 @@ Bitocle是一款简单的用来查看自己托管在GitHub上的代码的安卓�
 
  - 项目主页：[Bitocle](https://github.com/mthli/Bitocle "Bitocle的项目主页")
 
- - 遵循协议：[Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html "Apache License, Version 2.0")
+ - 遵循协议：[Apache License, Version 2.0](https://github.com/mthli/Bitocle/blob/master/LICENSE "Apache License, Version 2.0")
 
  - 开发者：[Matthew Lee](http://mthli.github.io/ "Matthew Lee的个人博客")
 
