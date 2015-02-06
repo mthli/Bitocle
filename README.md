@@ -186,7 +186,7 @@ We call the first list you see `main list`.
 
  - Homepage: [Bitocle](https://github.com/mthli/Bitocle "Bitocle Homepage")
 
- - License: [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html "Apache License, Version 2.0")
+ - License: [Apache License, Version 2.0](https://github.com/mthli/Bitocle/blob/master/LICENSE "Apache License, Version 2.0")
 
  - Author: [Matthew Lee](http://mthli.github.io/ "Matthew Lee's Blog")
 
